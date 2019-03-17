@@ -140,7 +140,7 @@ The direct relationship between $g$ and $\psi$ can potentially be used to give a
 Furthermore, when viewed independently, the moduli of refined representation seems to recover the stack by reconstructing it via its $\Pic(\bX)$-graded Cox ring, which is where the global quotient description hinted at above comes from.
 The link between $\bM_\text{ref}$ and the Cox ring of $\bX$ is explored in Section~\ref{sec:refinedviaCox} and is demonstrated using the example of G-L projective spaces in Section~\ref{sec:HIMO}.
 
-\section{Background on quasi-projective stacks}
+\section{Background: quasi-projective stacks}
 
 In this paper, we will mainly be dealing with quasi-projective stacks $\bX$ as defined by Kresch \cite{Kr}. We record here his definition as well as some basic facts about such stacks.
 
@@ -205,8 +205,88 @@ Many results about quasi-coherent sheaves on stacks can be reduced corresponding
 We say $\bX$ is {\em (quasi-)projective} if it has a generating sheaf and the coarse moduli space $X$ is a (quasi-)projective scheme.
 \end{definition}
 
-Examples of projective stacks include Geigle-Lenzing's weighted projective lines \cite{GL} and Herschend-Iyama-Minamoto-Opperman's weighted projective spaces. We will however, refer to these using the less ambiguous terminology of orbifold projective lines and spaces. 
+Examples of projective stacks include Geigle-Lenzing's weighted projective lines \cite{GL} and Herschend-Iyama-Minamoto-Opperman's weighted projective spaces \cite{HIMO}. We will however, refer to these using the less ambiguous terminology of orbifold projective lines and spaces. 
 
+\section{Notation: monoidal categories}
+\label{sec:monoidal}
+
+It will be convenient to cast many of the definitions in terms of the language of monoidal categories. We set up what we need in this section.
+
+There are several symmetric monoidal categories of interest. Firstly, for any stack $\bX$, we let $\Vect_1 (\bX)$ denote the symmetric monoidal category of line bundles on $\bX$, where the morphisms are the isomorphisms. The category is also rigid in the sense that it has (left and right) duals. 
+
+
+Secondly, given an abelian group $\Lambda$ and subgroup $\Lambda'$, we define a symmetric monoidal category $\underline{\Lambda}/\Lambda'$ whose objects are the elements of $\Lambda$. The morphisms are given by a pair $\lambda \in \Lambda, \lambda' \in \Lambda'$ and have the form $\lambda \xto{+\lambda'} \lambda + \lambda'$. Composition of morphisms is given by addition. The tensor product is also given by addition whilst the braiding and the associator are given by the identity $+0$. Note that morphisms in this category are unique (if they exist). This observation is useful to keep in mind when verifying diagrams in $\underline{\Lambda}/\Lambda'$ commute. In particular, it streamlines checking that $\underline{\Lambda}/\Lambda'$ is a symmetric monoidal category, an elementary verification we omit. Note also that it is rigid with duals given by negatives. When $\Lambda' = 0$ we write $\underline{\Lambda} = \underline{\Lambda}/\Lambda'$.
+
+\begin{definition} \label{def:groupline}
+We define a {\em $\Lambda$-group of line bundles} on $\bX$ to be a braided monoidal functor $\Gamma \colon \underline{\Lambda} \rightarrow \Vect_1(\bX)$.
+\end{definition}
+The relevance of this notion for us is that the classifying stack $B\Lambda^{\vee}$ has category of sections over a scheme $S$, the $\Lambda$-groups of line bundles on $S$. Consider now a $\Lambda$-group of line bundles $\Gamma$ on $\bX$ and subgroup $K < \Lambda$. Note that we always have the trivial braided monoidal functor $\cO_? \colon \underline{K} \to \Vect_1(\bX) \colon \lambda \mapsto \cO_{\bX}$. 
+\begin{definition}   \label{def:categorifyrel}
+A {\em categorification of $K$-relations in $\Gamma$} is a natural isomorphism $\eta \colon \cO_? \to \Gamma |_K$ of monoidal functors from $\underline{K} \to \Vect_1(\bX)$. 
+\end{definition}
+
+Recall that the data of a monoidal functor consists of both a functor $\Phi$ as well as a {\em compatibility with tensor transformation} $\Phi(?) \otimes \Phi(?) \to \Phi(? \otimes ?)$. As is common practice, we will usually denote the monoidal functor by the defining functor alone, suppressing the latter piece of datum from the notation. 
+
+\begin{proposition}  \label{prop:monoidaltorefined}
+Suppose given a braided monoidal functor $\Gamma \colon \underline{\Lambda}/K \to \Vect_1(\bX)$, so on restriction, we obtain a $K$-group of line bundles $\Gamma|_K$ on $K$. The following defines a categorification $\eta \colon \cO_? \to \Gamma|_K$ of $K$-relations: 
+$$ \Gamma(0 \to \lambda) =: \eta_{\lambda} \colon \cO_{\bX} \to \Gamma(\lambda).$$
+\end{proposition}
+\begin{proof}
+Let $J_{\lambda, \lambda'} \colon \Gamma(\lambda) \otimes \Gamma(\lambda') \to \Gamma(\lambda + \lambda')$ be the compatibility with tensor transformation. We need to show that for any $\lambda, \lambda' \in K$, $\eta_{\lambda + \lambda'}$ is the composite
+\begin{equation} \label{eqn:monoidaltorefined}
+\cO \xto{\eta_{\lambda} \otimes \eta_{\lambda'}} \Gamma(\lambda) \otimes \Gamma(\lambda') \xto{J_{\lambda,\lambda'}} \Gamma(\lambda + \lambda').
+\end{equation}
+Note first that
+\begin{equation}  \label{eqn:etaofsum}
+\eta_{\lambda + \lambda'} = 
+\Gamma(0 \to \lambda' \to \lambda + \lambda') = 
+\Gamma(\lambda' \to \lambda + \lambda') \circ \Gamma(0 \to \lambda').
+\end{equation}
+Also, $J$ is natural so there is a commutative diagram
+\begin{equation*}
+\begin{CD}
+\Gamma(0) \otimes \Gamma(\lambda') @>>> \Gamma(\lambda') \\
+@VVV @VV{\Gamma(\lambda' \to \lambda + \lambda')}V \\
+\Gamma(\lambda) \otimes \Gamma(\lambda') @>{J_{\lambda,\lambda'}}>> \Gamma(\lambda + \lambda')
+\end{CD}
+\end{equation*}
+This allows us to identify (\ref{eqn:etaofsum}) with (\ref{eqn:monoidaltorefined}). 
+\end{proof}
+Recall that the objects of $\underline{\Lambda}/K$ are the same as those of $\underline{\Lambda}$ so it is natural to ask, when does a $\Lambda$-group of line bundles $\Gamma\colon \underline{\Lambda} \to \Vect_1(\bX)$ lift to a braided monoidal functor $\Gamma\colon \underline{\Lambda}/K \to \Vect_1(\bX)$. To this end, we will use the following result whose elementary proof will be omitted. 
+
+\begin{proposition}  \label{prop:transferlift}
+Suppose there are braided monoidal functors $\Phi\colon \underline{\Lambda}/K \to \Vect_1(\bX), \Psi \colon \underline{\Lambda} \to \Vect_1(\bX)$ and a natural isomorphism $\eta \colon \Phi \to \Psi$ of monoidal functors from $\underline{\Lambda} \to \Vect_1(\bX)$. Then $\Psi$ lifts to a braided monoidal functor $\underline{\Lambda}/K \to \Vect_1(\bX)$ upon defining 
+$ \Psi(\lambda \to \lambda + \kappa)$
+as the composite
+$$ \Psi(\lambda) \xto{\eta^{-1}_{\lambda}} 
+\Phi(\lambda) \xto{\Phi(\lambda \to \lambda + \kappa)} \Phi(\lambda + \kappa) \xto{\eta_{\lambda + \kappa}} \Psi(\lambda+\kappa).$$
+\end{proposition}
+
+Let $\cL_1, \ldots, \cL_s$ be line bundles on $\bX$ and $\Lambda_g$ be the free abelian group on corresponding abstract generators $\lambda_1,\ldots, \lambda_s$.
+
+\begin{remark}  \label{rem:wordsinLis}
+Since $\Vect_1(\bX)$ is a rigid symmetric monoidal category, there are canonical isomorphisms of form $\cL \otimes \cL' \simeq \cL' \otimes \cL$ and $\cO \simeq \cL \otimes \cL^{-1}$. We view these canonical isomorphisms as identifications and will thus write $\cL \otimes \cL' = \cL' \otimes \cL$ and $\cO = \cL \otimes \cL^{-1}$. In particular, we will identify any two tensor words in the $\cL_i^{\pm 1}$ if they have the same degree in each of the $\cL_i$. For example we write $\cL_1^2 \otimes \cL_2^3 \otimes \cL_1^{-1} = \cL_1 \otimes \cL_2^3$. In this way, we obtain a braided monoidal functor $\cL_? \colon \underline{\Lambda}_g \to \Vect_1(\bX) \colon \lambda \mapsto \cL_{\lambda}$ such that $\cL_{\lambda_i} = \cL_i$ and $\cL_{\lambda + \lambda'}  = \cL_{\lambda} \otimes \cL_{\lambda'}$. 
+\end{remark}
+
+Suppose the isomorphism classes of the line bundles $\cL_1, \ldots, \cL_s$ generate $\Pic \bX$.  The assignment $\lambda_i \mapsto \cL_i$ defines a group homomorphism $\Lambda_g \to \Pic \bX$. Let $\Lambda_r$ denote the kernel of this map and $\iota \colon \Pic \bX \to \Lambda_g$ any section, normalised so that $\iota \cO = 0$. 
+
+\begin{proposition} \label{prop:vect1X}
+The section $\iota$ lifts to a braided monoidal equivalence $\underline{\Pic} \bX \to \underline{\Lambda}_g / \Lambda_r$ which is inverse to the braided monoidal functor $\underline{\Lambda}_g / \Lambda_r \to \underline{\Pic} \bX$ defined by the group homomorphism above. 
+\end{proposition}
+
+Since $\Lambda_r$ is free, we may pick a basis $B_r$ for it. Hence for each $\rho \in B_r$, we may pick an isomorphism $\phi_{\rho} \colon \cO \xto{\sim} \cL_{\rho}$. 
+
+\begin{definition} \label{def:genrelVect}
+In this case, we say that we have {\em chosen generators $\cL_i$ and relations $\phi_{\rho}$ for $\Vect_1(\bX)$}.  
+\end{definition}
+
+
+\begin{proposition}  \label{prop:cLfunctor}
+There is a braided monoidal functor $\cL_? \colon \underline{\Lambda}_g / \Lambda_r \to \Vect_1(\bX)$ which on objects is defined as in Remark~\ref{rem:wordsinLis}. On morphisms, it is determined by $(0 \xto{+ \rho} \rho) \mapsto \phi_{\rho}$ and the compatibility with tensor transformation $\cL_? \otimes \cL_?  = \cL(? + ?)$.
+\end{proposition}
+\begin{proof}
+We first extend the definition of $\phi_{\rho}$ to all $\rho \in \Lambda_r$. If $\rho_i \in B_r$ are the basis elements, then we can uniquely write $\rho = \sum n_i \rho_i$ and define $\phi_{\rho}  = \bigotimes_i \phi_{\rho_i}^{\otimes n_i}$. On morphisms, $\cL_?$ maps $(\lambda \xrightarrow{\rho} \lambda + \rho) \mapsto \cL_{\lambda} \otimes \phi_{\rho}$. This is all well-defined as per Remark~\ref{rem:wordsinLis}. One can now check that with the compatibility with tensor transformation above, $\cL_?$ is a braided monoidal functor.
+\end{proof}
 
 
 \section{Skyscraper sheaves on stacks}
@@ -463,169 +543,25 @@ For $n\gg 0$, the spectral sequence collapses to show that $F_n(H^q(\cP)) = 0$ f
 $\oplus \cN^{\otimes n \vec{i}} \otimes_T \cM$ which is flat over $T$. It follows since flatness is a property of the abelian category and \cite{AZ94}, that $\cP$ is flat over $T$ too. Furthermore, the Hilbert function of the Serre module is bounded so $\cP$ is even a flat family of finite length sheaves. The fact that it is also a family of skyscraper sheaves relative to $\cT$ follows from the fact that $\RHom_{\bX}(\cT, \cP) \simeq \cM$ which has the same rank vector as $\cT$. This completes the proof that $\psi$ is an isomorphism of stacks. Composing with the ``tautological'' isomorphism of Theorem~\ref{thm:tautological} gives the required isomorphism which maps the universal object $\Delta_{*}\cO_{\bX}$ (with appropriate isomorphisms) to $\cT^{\vee}$. 
 \end{proof}
 
+\section{Refined representations and their moduli}
 
-\section{Some results on monoidal categories}
-\label{sec:monoidal}
+We keep the setting adopted in Section \ref{sc:tensor_stable} above, that is: $\bX$ is a separated smooth projective stack with a tilting bundle $\cT$ inducing a derived equivalence $$\Phi \colon \, D^b(\bX) \longrightarrow D^b_{fg}(A)$$ where $A=\End_{\bX} \cT \cong kQ/I$ for some quiver $Q = (Q_0,Q_1)$ and some admissible ideal $I\subset kQ$. 
+We further assume that $\cT \cong \oplus_{i\in Q_0} \cT_i$ for some pairwise non-isomorphic line bundles $\cT_i$.
+The aim here is to give an analogue of tensor stability in the language of quiver representations.
+The precise relation between the tensor stable moduli space of $A$-modules and that of refined representations will be discussed thoroughly in the Section~\label{sc:Picard}.
 
-It will be convenient to cast many of the definitions in terms of the language of monoidal categories. We set up what we need in this section.
+The moduli space of quiver representations $Q$ satisfying the relations of $I$ with dimension vector $\vecd = (1, \ldots, 1)$ comes with a universal bundle $\cU  = \oplus_{i \in Q_0} \cU_i$.
+Since the moduli stack $\bM$ is rigidified to remove the common $\bG_m$-stabiliser, $\cU$ is only uniquely defined up to twist by some line bundle on $\bM$.
+The titling bundle $\cT^{\vee}$ gives a tautological family of quiver representations of $Q$ over $\bX$ and hence induces a morphism of stacks $f \colon \bX \rightarrow \bM$ such that $f^* \cU \simeq \cN \otimes_{\bX} \cT^{\vee}$ for some line bundle $\cN$ on $\bX$.
+If we assume that one of the $\cT_i$ is $\cO_{\bX}$, then we can further arrange matters so $\cN = \cO_{\bM}$ in which case we say that $\cU$ is {\em normalised}.
 
-There are several symmetric monoidal categories of interest. Firstly, for any stack $\bX$, we let $\Vect_1 (\bX)$ denote the symmetric monoidal category of line bundles on $\bX$, where the morphisms are the isomorphisms. The category is also rigid in the sense that it has (left and right) duals. 
+Pull-back gives a monoidal functor $\underline{Vec}(\bM) \rightarrow \underline{Vec}(\bX)$ and group homomorphism $\text{pic} \colon \Pic(\bM) \rightarrow \Pic(\bX)$.
+The pull-back functor is not a monoidal equivalence equivalence for a general $\bX$.
+Inspired by Proposition~\ref{prop:vect1X}, we supplement the a representation with the data of a categorificition of $\Lambda_r$-relations to address this mismatch of monoidal structures.
+We, furthermore, require the $A$-module structure to be compatible with this additional data.
+The rest of the section fleshes out the details. 
 
-
-Secondly, given an abelian group $\Lambda$ and subgroup $\Lambda'$, we define a symmetric monoidal category $\underline{\Lambda}/\Lambda'$ whose objects are the elements of $\Lambda$. The morphisms are given by a pair $\lambda \in \Lambda, \lambda' \in \Lambda'$ and have the form $\lambda \xto{+\lambda'} \lambda + \lambda'$. Composition of morphisms is given by addition. The tensor product is also given by addition whilst the braiding and the associator are given by the identity $+0$. Note that morphisms in this category are unique (if they exist). This observation is useful to keep in mind when verifying diagrams in $\underline{\Lambda}/\Lambda'$ commute. In particular, it streamlines checking that $\underline{\Lambda}/\Lambda'$ is a symmetric monoidal category, an elementary verification we omit. Note also that it is rigid with duals given by negatives. When $\Lambda' = 0$ we write $\underline{\Lambda} = \underline{\Lambda}/\Lambda'$.
-
-\begin{definition} \label{def:groupline}
-We define a {\em $\Lambda$-group of line bundles} on $\bX$ to be a braided monoidal functor $\Gamma \colon \underline{\Lambda} \rightarrow \Vect_1(\bX)$.
-\end{definition}
-The relevance of this notion for us is that the classifying stack $B\Lambda^{\vee}$ has category of sections over a scheme $S$, the $\Lambda$-groups of line bundles on $S$. Consider now a $\Lambda$-group of line bundles $\Gamma$ on $\bX$ and subgroup $K < \Lambda$. Note that we always have the trivial braided monoidal functor $\cO_? \colon \underline{K} \to \Vect_1(\bX) \colon \lambda \mapsto \cO_{\bX}$. 
-\begin{definition}   \label{def:categorifyrel}
-A {\em categorification of $K$-relations in $\Gamma$} is a natural isomorphism $\eta \colon \cO_? \to \Gamma |_K$ of monoidal functors from $\underline{K} \to \Vect_1(\bX)$. 
-\end{definition}
-
-Recall that the data of a monoidal functor consists of both a functor $\Phi$ as well as a {\em compatibility with tensor transformation} $\Phi(?) \otimes \Phi(?) \to \Phi(? \otimes ?)$. As is common practice, we will usually denote the monoidal functor by the defining functor alone, suppressing the latter piece of datum from the notation. 
-
-\begin{proposition}  \label{prop:monoidaltorefined}
-Suppose given a braided monoidal functor $\Gamma \colon \underline{\Lambda}/K \to \Vect_1(\bX)$, so on restriction, we obtain a $K$-group of line bundles $\Gamma|_K$ on $K$. The following defines a categorification $\eta \colon \cO_? \to \Gamma|_K$ of $K$-relations: 
-$$ \Gamma(0 \to \lambda) =: \eta_{\lambda} \colon \cO_{\bX} \to \Gamma(\lambda).$$
-\end{proposition}
-\begin{proof}
-Let $J_{\lambda, \lambda'} \colon \Gamma(\lambda) \otimes \Gamma(\lambda') \to \Gamma(\lambda + \lambda')$ be the compatibility with tensor transformation. We need to show that for any $\lambda, \lambda' \in K$, $\eta_{\lambda + \lambda'}$ is the composite
-\begin{equation} \label{eqn:monoidaltorefined}
-\cO \xto{\eta_{\lambda} \otimes \eta_{\lambda'}} \Gamma(\lambda) \otimes \Gamma(\lambda') \xto{J_{\lambda,\lambda'}} \Gamma(\lambda + \lambda').
-\end{equation}
-Note first that
-\begin{equation}  \label{eqn:etaofsum}
-\eta_{\lambda + \lambda'} = 
-\Gamma(0 \to \lambda' \to \lambda + \lambda') = 
-\Gamma(\lambda' \to \lambda + \lambda') \circ \Gamma(0 \to \lambda').
-\end{equation}
-Also, $J$ is natural so there is a commutative diagram
-\begin{equation*}
-\begin{CD}
-\Gamma(0) \otimes \Gamma(\lambda') @>>> \Gamma(\lambda') \\
-@VVV @VV{\Gamma(\lambda' \to \lambda + \lambda')}V \\
-\Gamma(\lambda) \otimes \Gamma(\lambda') @>{J_{\lambda,\lambda'}}>> \Gamma(\lambda + \lambda')
-\end{CD}
-\end{equation*}
-This allows us to identify (\ref{eqn:etaofsum}) with (\ref{eqn:monoidaltorefined}). 
-\end{proof}
-Recall that the objects of $\underline{\Lambda}/K$ are the same as those of $\underline{\Lambda}$ so it is natural to ask, when does a $\Lambda$-group of line bundles $\Gamma\colon \underline{\Lambda} \to \Vect_1(\bX)$ lift to a braided monoidal functor $\Gamma\colon \underline{\Lambda}/K \to \Vect_1(\bX)$. To this end, we will use the following result whose elementary proof will be omitted. 
-
-\begin{proposition}  \label{prop:transferlift}
-Suppose there are braided monoidal functors $\Phi\colon \underline{\Lambda}/K \to \Vect_1(\bX), \Psi \colon \underline{\Lambda} \to \Vect_1(\bX)$ and a natural isomorphism $\eta \colon \Phi \to \Psi$ of monoidal functors from $\underline{\Lambda} \to \Vect_1(\bX)$. Then $\Psi$ lifts to a braided monoidal functor $\underline{\Lambda}/K \to \Vect_1(\bX)$ upon defining 
-$ \Psi(\lambda \to \lambda + \kappa)$
-as the composite
-$$ \Psi(\lambda) \xto{\eta^{-1}_{\lambda}} 
-\Phi(\lambda) \xto{\Phi(\lambda \to \lambda + \kappa)} \Phi(\lambda + \kappa) \xto{\eta_{\lambda + \kappa}} \Psi(\lambda+\kappa).$$
-\end{proposition}
-
-Let $\cL_1, \ldots, \cL_s$ be line bundles on $\bX$ and $\Lambda_g$ be the free abelian group on corresponding abstract generators $\lambda_1,\ldots, \lambda_s$.
-
-\begin{remark}  \label{rem:wordsinLis}
-Since $\Vect_1(\bX)$ is a rigid symmetric monoidal category, there are canonical isomorphisms of form $\cL \otimes \cL' \simeq \cL' \otimes \cL$ and $\cO \simeq \cL \otimes \cL^{-1}$. We view these canonical isomorphisms as identifications and will thus write $\cL \otimes \cL' = \cL' \otimes \cL$ and $\cO = \cL \otimes \cL^{-1}$. In particular, we will identify any two tensor words in the $\cL_i^{\pm 1}$ if they have the same degree in each of the $\cL_i$. For example we write $\cL_1^2 \otimes \cL_2^3 \otimes \cL_1^{-1} = \cL_1 \otimes \cL_2^3$. In this way, we obtain a braided monoidal functor $\cL_? \colon \underline{\Lambda}_g \to \Vect_1(\bX) \colon \lambda \mapsto \cL_{\lambda}$ such that $\cL_{\lambda_i} = \cL_i$ and $\cL_{\lambda + \lambda'}  = \cL_{\lambda} \otimes \cL_{\lambda'}$. 
-\end{remark}
-
-Suppose the isomorphism classes of the line bundles $\cL_1, \ldots, \cL_s$ generate $\Pic \bX$.  The assignment $\lambda_i \mapsto \cL_i$ defines a group homomorphism $\Lambda_g \to \Pic \bX$. Let $\Lambda_r$ denote the kernel of this map and $\iota \colon \Pic \bX \to \Lambda_g$ any section, normalised so that $\iota \cO = 0$. 
-
-\begin{proposition} \label{prop:vect1X}
-The section $\iota$ lifts to a braided monoidal equivalence $\underline{\Pic} \bX \to \underline{\Lambda}_g / \Lambda_r$ which is inverse to the braided monoidal functor $\underline{\Lambda}_g / \Lambda_r \to \underline{\Pic} \bX$ defined by the group homomorphism above. 
-\end{proposition}
-
-Since $\Lambda_r$ is free, we may pick a basis $B_r$ for it. Hence for each $\rho \in B_r$, we may pick an isomorphism $\phi_{\rho} \colon \cO \xto{\sim} \cL_{\rho}$. 
-
-\begin{definition} \label{def:genrelVect}
-In this case, we say that we have {\em chosen generators $\cL_i$ and relations $\phi_{\rho}$ for $\Vect_1(\bX)$}.  
-\end{definition}
-
-
-\begin{proposition}  \label{prop:cLfunctor}
-There is a braided monoidal functor $\cL_? \colon \underline{\Lambda}_g / \Lambda_r \to \Vect_1(\bX)$ which on objects is defined as in Remark~\ref{rem:wordsinLis}. On morphisms, it is determined by $(0 \xto{+ \rho} \rho) \mapsto \phi_{\rho}$ and the compatibility with tensor transformation $\cL_? \otimes \cL_?  = \cL(? + ?)$.
-\end{proposition}
-\begin{proof}
-We first extend the definition of $\phi_{\rho}$ to all $\rho \in \Lambda_r$. If $\rho_i \in B_r$ are the basis elements, then we can uniquely write $\rho = \sum n_i \rho_i$ and define $\phi_{\rho}  = \bigotimes_i \phi_{\rho_i}^{\otimes n_i}$. On morphisms, $\cL_?$ maps $(\lambda \xrightarrow{\rho} \lambda + \rho) \mapsto \cL_{\lambda} \otimes \phi_{\rho}$. This is all well-defined as per Remark~\ref{rem:wordsinLis}. One can now check that with the compatibility with tensor transformation above, $\cL_?$ is a braided monoidal functor.
-\end{proof}
-
-\section{Cox rings and refined representations} \label{sec:refinedviaCox}
-
-In this section, we explore the idea of recovering a stack by reconstructing one of its Cox rings through moduli of representations of dimension vector $\vec{1}$. This builds on work in \cite{Abd} in the case of toric varieties. We begin with a finitely generated abelian group $\Lambda$ and a $\Lambda$-graded commutative algebra $R$. The dual group $G:= \Lambda$ acts naturally on $W:=\Spec R$ and we consider the Artin stack $\bW = [W/ G]$. Tautologically, $R$ is a Cox ring for $\bW$ corresponding to the subgroup $\Lambda \subseteq \Pic \bW$.
-
-The moduli of representations dimension vector $\vec{1}$ of a finite dimensional algebra, is naturally a torus quotient, so our first task is to give a way of expressing $\bW$ as a torus quotient. Consider an exact sequence of abelian groups 
-\begin{equation} \label{eq:defineF}
-     0 \to K \to F \to \Lambda \to 0
-\end{equation}
-where $F$ is finitely generated free. Dualising, we have expressed $G$ as a subgroup of the torus $\bT := F^{\vee}$. Let $S$ be any $F$-graded algebra equipped with a $\Lambda$-graded surjection $\phi \colon S \to R$. Here the $\Lambda$-grading on $S$ is the one induced from the $F$ grading via the surjection in (\ref{eq:defineF}). There are many natural ways to construct such an $S$, the simplest being to lift $\Lambda$-homogeneous generators of $R$ to compatible $F$-homogeneous generators of $S$. Later, we will construct $S$ simultaneously with $F$, essentially by multi-linearising relations in $R$. 
-
-Note that $W$ is a closed subscheme of $V:= \Spec S$ whose corresponding ideal sheaf is given by say $I:= \ker \phi$. Now $\bT$ acts diagonally on $V \times \bT/G$ so $[W/G] \simeq [\Wtilde/\bT]$ where $\Wtilde$ is the $\bT$-orbit of $W \times 1 \subseteq V \times \bT/G$. We clarify what $\Wtilde$ is. We view the co-ordinate ring of $V \times \bT/G$ as $S \otimes kK$ and let $\frakm\triangleleft kK$ be the maximal ideal corresponding to $1 \in \bT/G$. Then $\Wtilde$ is the closed subscheme defined by the ideal sheaf
-$$ I_{\Wtilde} := \bigcap_{\tau \in \bT} \tau.\left(I \otimes kK + S \otimes \frakm \right)$$
-To compute this, we need some notation. Recall that $I$ is only $\Lambda$-homogeneous. Let $s \in I$ be a $\Lambda$-homogeneous element. Then we can express it as a sum of $F$-homogeneous elements $s = s_1 + \ldots + s_m$ all of whose degrees lie in the same coset of $K$. Hence we can pick $\kappa_i \in K$ such that $s^h := s_1 \otimes \kappa_1 + \ldots + s_m \otimes \kappa_m$ is $F$-homogeneous. The {\em homogenisation} $s^h$ is only defined up to multiplication by some $\kappa \in K$. 
-
-\begin{proposition}  \label{prop:torusquotient}
-Let $\Sigma \subset I$ be a set of $\Lambda$-homogeneous generators of the $R$-ideal $I$. In the notation above, we have $[W/G] \simeq [\Wtilde/\bT]$ where $\Wtilde \subseteq V \times \bT/G$ is the closed subscheme whose ideal sheaf $I^h$ is generated by $\{s^h | s \in \Sigma\}$. 
-\end{proposition}
-\begin{proof}
-{\red Hopefully true. Write proof.}
-\end{proof}
-
-{\red Reference Craw-Smith here}. Following Craw-Smith's theory of multi-linear series, we consider a finite subset $Q_0 \subset \Lambda$ and the associated $Q_0$-indexed algebra $A$ of $R$. If we use $R(\lambda)$ to denote the graded shift of $R$ by $\lambda \in \Lambda$ then this is just the graded endomorphism algebra
-$$ A = \End_{R-\Gr} \bigoplus_{\lambda \in Q_0} R(\lambda).$$
-As usual, there is a quiver $Q = (Q_0,Q_1)$ such that $A$ is naturally a quotient of $kQ$. 
-We write the Peirce components as $A_{\lambda\mu} = \Hom_{R-\Gr}(R(\lambda),R(\mu))$. Note that if $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$, then there is a canonical isomorphism of Peirce components $\gamma = \gamma(\lambda,\mu;\lambda',\mu') \colon A_{\lambda\mu} \to A_{\lambda'\mu'}$ since both are canonically isomorphic to $R_{\lambda - \mu}$. Hence, graded components of the Cox ring $R$ may become ``separated'' in the $Q_0$-indexed algebra $A$. In order to recover $R$, we will later need to identify these Peirce components in a process we refer to as {\em de-indexing}. 
-
-As in Craw-Smith, we consider the rigidified moduli stack $\bM$ of $A$-modules of dimension vector $\vec{1}$. This can be expressed as a quotient stack as follows. Our notational convention below will be to use subscripts to indicate the grading group. Let $R_{\bZ Q_0^2}$ denote the symmetric $\bZ$-graded algebra with generators in degree $(\lambda,\mu) \in Q_0^2$ given by $A_{\lambda\mu}$. There are a linear map $\pi \colon \bZ Q_0^2 \to \Lambda \colon (\lambda,\mu) \mapsto \lambda - \mu$ and a natural morphism of $\Lambda$-graded algebras $\Phi \colon R_{\bZ Q_0^2} \to R$. There are some obvious elements in $\ker \Phi$ arising from the separation of graded components of $R$ referred to above. These have the form 
-\begin{equation}  \label{eq:deindex}
-    a - \gamma(\lambda,\mu;\lambda',\mu') (a)
-\end{equation}
-where $a \in (R_{\bZ Q_0^2})_{(\lambda,\mu)}$ and $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$. We let $I_{\textup{de}}\subseteq \ker \Phi$ be the $\Lambda$-graded ideal generated by these elements.
-\begin{definition}  \label{def:deindex}
-The ideal $I_{\textup{de}}$ is called the {\em ideal of de-indexing relations}.
-\end{definition}
-By construction of $A$, $\ker \Phi$ also contains the quiver relations in the following sense. Firstly, we extend linearly $Q_0 \hookrightarrow \Lambda$ to $\bZ Q_0 \to \Lambda$. Consider the weight lattice Wt$(Q) \subset \bZ^{Q_0}$, i.e.\ the sublattice of $\bZ^{Q_0}$ given by elements $\theta = \sum_{\chi\in Q_0} \theta_\chi \,\chi \in \bZ^{Q_0}$ for which $\sum_{i \in Q_0} \theta_\chi = 0$. Note that we can naturally factorise $\phi$ as 
-$$ \bZ Q_0^2 \to \textup{Wt}(Q) \to \Lambda.$$
-Let $R_{\textup{Wt}(Q)}$ denote the Wt$(Q)$-graded quotient of $R_{\bZ Q_0^2}$ obtained by factoring relations of the form
-$$ a \otimes a' - aa' \ \ \text{where} \ \ a \in A_{\mu\lambda},\ a' \in A_{\lambda\chi}$$
-and $aa'$ is the product in $A_{\mu\chi}$. We denote the quotient map by $\pi \colon R_{\bZ Q_0^2} \to R_{\textup{Wt(Q)}}$. Let $\bT = \textup{Wt}(Q)^{\vee}$. By construction we have
-\begin{proposition}  \label{prop:modulireps}
-There is a natural isomorphism $\bM \simeq [\Spec R_{\textup{Wt}(Q)} / \bT]$. 
-\end{proposition}
-Suppose now that $F:=\textup{Wt}(Q)$ surjects onto $\Lambda$ so we are in the situation at the beginning of this section and we have an exact sequence (\ref{eq:defineF}). Indeed, in this case, we have a $\Lambda$-graded surjection $R_{\textup{Wt}(Q)} \to R$ and hence a $G$-equivariant morphism 
-$$ W = \Spec R \hookrightarrow V = \Spec R_{\textup{Wt}(Q)}$$
-and the $G$-action on $V$ lifts to a $\bT$-action. 
-
-Proposition~\ref{prop:torusquotient} shows how to express our original stack $\bW = [W/G]$ as a torus quotient stack. We show how to give a moduli-theoretic interpretation of this torus quotient under an extra assumption
-
-{\red Perhaps the assumption below is a little annoying even if it seems to hold in every interesting example we can forecast}
-\begin{definition}  \label{def:capturerel}
-Suppose that $\textup{Wt}(Q)$ surjects onto $\Lambda$ as above. We say that $Q_0$ or the quiver {\em captures the relations of $R$} if the natural surjection $R_{\textup{Wt}(Q)}/(\pi(I_{\textup{de}})) \to R$ is an isomorphism. 
-\end{definition}
-
-First recall that a $k$-point of $V$ is given by a representation $M = \oplus_{v \in Q_0} M_v$ of $A$ together with a choice of basis for the $M_v$. Furthermore, the moduli of these based representations is isomorphic to $V$ as $\bT$-schemes. From Remark~\ref{rem:wordsinLis}, we have a braided monoidal functor $M_? \colon \underline{\textup{Wt}(Q)} \to \Vect_1(k)$. To recover the $\bT$-scheme $V \times \bT/G$, we need only add to the data of the based representation $M$, a categorification of $K$-relations $g\colon k_? \to M_?$. This $g$ is also called refinement data. We now assume that $Q_0$ captures the relations of $R$ so the subscheme $\Wtilde \subseteq V \times \bT/G$ in Proposition~\ref{prop:torusquotient} is determined by the ideal sheaf $\pi(I_{\textup{de}})^h$. Now the generators of $\pi(I_{\textup{de}})$ are sums of two $\textup{Wt}(Q)$-homogeneous elements $s:=\pi(a) - \pi(\gamma(a))$ with $a$ as in (\ref{eq:deindex}). Its homogenisation $s^h$ can be encoded moduli-theoretically on the refined representation as follows. Suppose that $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu' \in \Lambda$. Lifting this equation to $\textup{Wt(Q)}$ we see that $\kappa:= \lambda - \mu - \lambda' + \mu' \in K$. The refinement data $g$ thus gives an isomorphism $g_{\kappa} \colon \Hom_k(M_{\mu},M_{\lambda}) \to \Hom_k(M_{\mu'},M_{\lambda'})$. 
-Suppose $a \in A_{\mu\lambda}$ so we have a  multiplication by $a$ map $m_a \colon M_{\mu} \to M_{\lambda}$ and multiplication by $\gamma(a)$ map $m_{\gamma(a)} \colon  M_{\mu'} \to M_{\lambda'}$. Then the relation $s^h$ corresponds to commutativity of the following diagram. 
-\begin{equation}  \label{eq:refined}
-\begin{CD}
-k @>m_a \otimes M_{\mu}^*>> M_{\lambda} \otimes M_{\mu}^*\\
-@VV\text{id}V @VVg(\kappa)V\\
-k @>m_{\gamma(a)}\otimes M_{\mu'}^*>> M_{\lambda'} \otimes M_{\mu'}^*
-\end{CD}
-\end{equation}
-
-{\red I'm not convinced that the theory set out below is optimal. Seems the starting data is unnatural.}
-We now start abstractly with a finite dimensional algebra $A$ which can be expressed as the quotient of a path algebra $kQ$ by an admissible ideal. We can define $\textup{Wt}(Q)$ as before and now choose some $K \subseteq \textup{Wt}(Q)$ and let $\Lambda = \textup{Wt}(Q)/K$. We will assume that the composite $Q_0 \hookrightarrow \bZ Q_0 \to \tilde{\Lambda}:= \bZ Q_0/K$ is injective. For $\lambda \in \Lambda$, $Q_0 - \lambda \subset \tilde{\Lambda}$ and we may thus define $Q_{\lambda} = (Q_0 - \lambda) \cap Q_0$. For any subset $P \subseteq Q_0$, we define $A|_P = e_P A e_P$ where $e_P$ is the idempotent corresponding to the vertices in $P$. 
-\begin{definition}  \label{def:deindexaction}
-A {\em de-indexing action} consists of a collection of algebra isomorphisms $\gamma(\lambda) \colon A|_{Q_{\lambda}} \to A|_{Q_{\lambda} + \lambda}, \ \lambda \in \Lambda$ such that $\gamma(\lambda + \lambda') = \gamma(\lambda) \circ \gamma(\lambda')$ when restricted to $A|_P$ where $P\subseteq Q_0$ is the largest subset on which both sides are defined. 
-\end{definition}
-When $A$ is the $Q_0$-indexed algebra associated to the Cox ring $R$ above, then the canonical isomorphism of graded components gives a de-indexing action we call the {\em canonical de-indexing action}. 
-
-Assume given $K$ and a de-indexing action $\gamma$. 
-\begin{definition} \label{def:Kgammarefined}
-A {\em flat family of $(K,\gamma)$-refined representations} (over a test scheme $S$) consists of a flat family $M = \oplus M_v$ of $A$-modules over $S$ together with a categorification of $K$-relations $g \colon \cO_? \to M|_K$ such that diagram (\ref{eq:refined}) commutes for all $\lambda,\mu,\lambda',\mu' \in Q_0$ with $\kappa :=  \lambda - \mu - \lambda' + \mu' \in K$ and all $a \in A_{\lambda\mu}$. 
-\end{definition}
-
-We return to the original setting of Cox rings and immediately see. 
-\begin{theorem}
-Let $R$ be a $\Lambda$-graded algebra and pick $Q_0 \subset \Lambda$ so that $\textup{Wt}(Q)$ surjects onto $\Lambda$. Let $A$ be the associated $Q_0$-indexed algebra, $K$ be the kernel of $\textup{Wt}(Q) \to \Lambda$ and $\gamma$ be the canonical de-indexing action. Suppose finally that $Q_0$ captures all the relations in the Cox ring. Then the moduli stack of $(K,\gamma)$-refined representations is naturally isomorphic to $[\Spec R/ G]$ where $G = \Lambda^{\vee}$.
-\end{theorem}
-
-\section{Moduli of refined representations}  \label{sec:refined}
+\section{Refined representations and their moduli}  \label{sec:refined}
 
 We keep the setting adopted in Section \ref{sc:tensor_stable} above, that is: $\bX$ is a separated smooth projective stack with a tilting bundle $\cT$ inducing a derived equivalence $$\Phi \colon \, D^b(\bX) \longrightarrow D^b_{fg}(A)$$ where $A=\End_{\bX} \cT \cong kQ/I$ for some quiver $Q = (Q_0,Q_1)$ and some admissible ideal $I\subset kQ$. We further assume that $\cT \cong \oplus_{i\in Q_0} \cT_i$ for some pairwise non-isomorphic line bundles $\cT_i$ and, if need be, we may harmlessly further assume that one of these is $\cO_{\bX}$. The aim here is to relate moduli of tensor stable skyscraper sheaves to refined quiver representations as defined in \cite{AU} while expressing some examples as global quotients and hence enabling methods of GIT to study the moduli stacks. 
 
@@ -974,6 +910,86 @@ The morphism $h\colon\bM^{\Pic} \to \bM'_{\text{ref}}$ defined explicitly above 
 Suppose the $\psi_i \colon \cT^{\vee} \otimes_A^L L_i \simeq \cN_i \otimes_{\bX} \cT^{\vee}$ define the isomorphism $\tau \colon \bX \to \bM^{\Pic}$. From Theorem~\ref{thm:stackfromquiver}, we know that $\cN_i = \cL_i$ since the universal family is induced from the universal family $\Delta_* \cO_{\bX}$ of the tautological moduli problem. This latter description shows that in fact, the braided monoidal functor $\cL_? \colon \underline{\Lambda}_g/\Lambda_r$ also makes diagram~(\ref{eqn:Npsi}) commute. It follows that the entire monoidal functor $\cL_?$ coincides with the monoidal functor $\cN_?$ used in Proposition~\ref{prop:liftNfunctor} to construct $h(\cM,\psi_i)$. The morphism $\bX \to \bM_{\text{ref}}$ constructed in the proof of Prosition~\ref{prop:mapXtoMref} is thus precisely $h\tau$. 
 \end{proof}
 
+\section{Cox rings and refined representations} \label{sec:refinedviaCox}
+
+In this section, we explore the idea of recovering a stack by reconstructing one of its Cox rings through moduli of representations of dimension vector $\vec{1}$. This builds on work in \cite{Abd} in the case of toric varieties. We begin with a finitely generated abelian group $\Lambda$ and a $\Lambda$-graded commutative algebra $R$. The dual group $G:= \Lambda$ acts naturally on $W:=\Spec R$ and we consider the Artin stack $\bW = [W/ G]$. Tautologically, $R$ is a Cox ring for $\bW$ corresponding to the subgroup $\Lambda \subseteq \Pic \bW$.
+
+The moduli of representations dimension vector $\vec{1}$ of a finite dimensional algebra, is naturally a torus quotient, so our first task is to give a way of expressing $\bW$ as a torus quotient. Consider an exact sequence of abelian groups 
+\begin{equation} \label{eq:defineF}
+     0 \to K \to F \to \Lambda \to 0
+\end{equation}
+where $F$ is finitely generated free. Dualising, we have expressed $G$ as a subgroup of the torus $\bT := F^{\vee}$. Let $S$ be any $F$-graded algebra equipped with a $\Lambda$-graded surjection $\phi \colon S \to R$. Here the $\Lambda$-grading on $S$ is the one induced from the $F$ grading via the surjection in (\ref{eq:defineF}). There are many natural ways to construct such an $S$, the simplest being to lift $\Lambda$-homogeneous generators of $R$ to compatible $F$-homogeneous generators of $S$. Later, we will construct $S$ simultaneously with $F$, essentially by multi-linearising relations in $R$. 
+
+Note that $W$ is a closed subscheme of $V:= \Spec S$ whose corresponding ideal sheaf is given by say $I:= \ker \phi$. Now $\bT$ acts diagonally on $V \times \bT/G$ so $[W/G] \simeq [\Wtilde/\bT]$ where $\Wtilde$ is the $\bT$-orbit of $W \times 1 \subseteq V \times \bT/G$. We clarify what $\Wtilde$ is. We view the co-ordinate ring of $V \times \bT/G$ as $S \otimes kK$ and let $\frakm\triangleleft kK$ be the maximal ideal corresponding to $1 \in \bT/G$. Then $\Wtilde$ is the closed subscheme defined by the ideal sheaf
+$$ I_{\Wtilde} := \bigcap_{\tau \in \bT} \tau.\left(I \otimes kK + S \otimes \frakm \right)$$
+To compute this, we need some notation. Recall that $I$ is only $\Lambda$-homogeneous. Let $s \in I$ be a $\Lambda$-homogeneous element. Then we can express it as a sum of $F$-homogeneous elements $s = s_1 + \ldots + s_m$ all of whose degrees lie in the same coset of $K$. Hence we can pick $\kappa_i \in K$ such that $s^h := s_1 \otimes \kappa_1 + \ldots + s_m \otimes \kappa_m$ is $F$-homogeneous. The {\em homogenisation} $s^h$ is only defined up to multiplication by some $\kappa \in K$. 
+
+\begin{proposition}  \label{prop:torusquotient}
+Let $\Sigma \subset I$ be a set of $\Lambda$-homogeneous generators of the $R$-ideal $I$. In the notation above, we have $[W/G] \simeq [\Wtilde/\bT]$ where $\Wtilde \subseteq V \times \bT/G$ is the closed subscheme whose ideal sheaf $I^h$ is generated by $\{s^h | s \in \Sigma\}$. 
+\end{proposition}
+\begin{proof}
+{\red Hopefully true. Write proof.}
+\end{proof}
+
+{\red Reference Craw-Smith here}. Following Craw-Smith's theory of multi-linear series, we consider a finite subset $Q_0 \subset \Lambda$ and the associated $Q_0$-indexed algebra $A$ of $R$. If we use $R(\lambda)$ to denote the graded shift of $R$ by $\lambda \in \Lambda$ then this is just the graded endomorphism algebra
+$$ A = \End_{R-\Gr} \bigoplus_{\lambda \in Q_0} R(\lambda).$$
+As usual, there is a quiver $Q = (Q_0,Q_1)$ such that $A$ is naturally a quotient of $kQ$. 
+We write the Peirce components as $A_{\lambda\mu} = \Hom_{R-\Gr}(R(\lambda),R(\mu))$. Note that if $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$, then there is a canonical isomorphism of Peirce components $\gamma = \gamma(\lambda,\mu;\lambda',\mu') \colon A_{\lambda\mu} \to A_{\lambda'\mu'}$ since both are canonically isomorphic to $R_{\lambda - \mu}$. Hence, graded components of the Cox ring $R$ may become ``separated'' in the $Q_0$-indexed algebra $A$. In order to recover $R$, we will later need to identify these Peirce components in a process we refer to as {\em de-indexing}. 
+
+As in Craw-Smith, we consider the rigidified moduli stack $\bM$ of $A$-modules of dimension vector $\vec{1}$. This can be expressed as a quotient stack as follows. Our notational convention below will be to use subscripts to indicate the grading group. Let $R_{\bZ Q_0^2}$ denote the symmetric $\bZ$-graded algebra with generators in degree $(\lambda,\mu) \in Q_0^2$ given by $A_{\lambda\mu}$. There are a linear map $\pi \colon \bZ Q_0^2 \to \Lambda \colon (\lambda,\mu) \mapsto \lambda - \mu$ and a natural morphism of $\Lambda$-graded algebras $\Phi \colon R_{\bZ Q_0^2} \to R$. There are some obvious elements in $\ker \Phi$ arising from the separation of graded components of $R$ referred to above. These have the form 
+\begin{equation}  \label{eq:deindex}
+    a - \gamma(\lambda,\mu;\lambda',\mu') (a)
+\end{equation}
+where $a \in (R_{\bZ Q_0^2})_{(\lambda,\mu)}$ and $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$. We let $I_{\textup{de}}\subseteq \ker \Phi$ be the $\Lambda$-graded ideal generated by these elements.
+\begin{definition}  \label{def:deindex}
+The ideal $I_{\textup{de}}$ is called the {\em ideal of de-indexing relations}.
+\end{definition}
+By construction of $A$, $\ker \Phi$ also contains the quiver relations in the following sense. Firstly, we extend linearly $Q_0 \hookrightarrow \Lambda$ to $\bZ Q_0 \to \Lambda$. Consider the weight lattice Wt$(Q) \subset \bZ^{Q_0}$, i.e.\ the sublattice of $\bZ^{Q_0}$ given by elements $\theta = \sum_{\chi\in Q_0} \theta_\chi \,\chi \in \bZ^{Q_0}$ for which $\sum_{i \in Q_0} \theta_\chi = 0$. Note that we can naturally factorise $\phi$ as 
+$$ \bZ Q_0^2 \to \textup{Wt}(Q) \to \Lambda.$$
+Let $R_{\textup{Wt}(Q)}$ denote the Wt$(Q)$-graded quotient of $R_{\bZ Q_0^2}$ obtained by factoring relations of the form
+$$ a \otimes a' - aa' \ \ \text{where} \ \ a \in A_{\mu\lambda},\ a' \in A_{\lambda\chi}$$
+and $aa'$ is the product in $A_{\mu\chi}$. We denote the quotient map by $\pi \colon R_{\bZ Q_0^2} \to R_{\textup{Wt(Q)}}$. Let $\bT = \textup{Wt}(Q)^{\vee}$. By construction we have
+\begin{proposition}  \label{prop:modulireps}
+There is a natural isomorphism $\bM \simeq [\Spec R_{\textup{Wt}(Q)} / \bT]$. 
+\end{proposition}
+Suppose now that $F:=\textup{Wt}(Q)$ surjects onto $\Lambda$ so we are in the situation at the beginning of this section and we have an exact sequence (\ref{eq:defineF}). Indeed, in this case, we have a $\Lambda$-graded surjection $R_{\textup{Wt}(Q)} \to R$ and hence a $G$-equivariant morphism 
+$$ W = \Spec R \hookrightarrow V = \Spec R_{\textup{Wt}(Q)}$$
+and the $G$-action on $V$ lifts to a $\bT$-action. 
+
+Proposition~\ref{prop:torusquotient} shows how to express our original stack $\bW = [W/G]$ as a torus quotient stack. We show how to give a moduli-theoretic interpretation of this torus quotient under an extra assumption
+
+{\red Perhaps the assumption below is a little annoying even if it seems to hold in every interesting example we can forecast}
+\begin{definition}  \label{def:capturerel}
+Suppose that $\textup{Wt}(Q)$ surjects onto $\Lambda$ as above. We say that $Q_0$ or the quiver {\em captures the relations of $R$} if the natural surjection $R_{\textup{Wt}(Q)}/(\pi(I_{\textup{de}})) \to R$ is an isomorphism. 
+\end{definition}
+
+First recall that a $k$-point of $V$ is given by a representation $M = \oplus_{v \in Q_0} M_v$ of $A$ together with a choice of basis for the $M_v$. Furthermore, the moduli of these based representations is isomorphic to $V$ as $\bT$-schemes. From Remark~\ref{rem:wordsinLis}, we have a braided monoidal functor $M_? \colon \underline{\textup{Wt}(Q)} \to \Vect_1(k)$. To recover the $\bT$-scheme $V \times \bT/G$, we need only add to the data of the based representation $M$, a categorification of $K$-relations $g\colon k_? \to M_?$. This $g$ is also called refinement data. We now assume that $Q_0$ captures the relations of $R$ so the subscheme $\Wtilde \subseteq V \times \bT/G$ in Proposition~\ref{prop:torusquotient} is determined by the ideal sheaf $\pi(I_{\textup{de}})^h$. Now the generators of $\pi(I_{\textup{de}})$ are sums of two $\textup{Wt}(Q)$-homogeneous elements $s:=\pi(a) - \pi(\gamma(a))$ with $a$ as in (\ref{eq:deindex}). Its homogenisation $s^h$ can be encoded moduli-theoretically on the refined representation as follows. Suppose that $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu' \in \Lambda$. Lifting this equation to $\textup{Wt(Q)}$ we see that $\kappa:= \lambda - \mu - \lambda' + \mu' \in K$. The refinement data $g$ thus gives an isomorphism $g_{\kappa} \colon \Hom_k(M_{\mu},M_{\lambda}) \to \Hom_k(M_{\mu'},M_{\lambda'})$. 
+Suppose $a \in A_{\mu\lambda}$ so we have a  multiplication by $a$ map $m_a \colon M_{\mu} \to M_{\lambda}$ and multiplication by $\gamma(a)$ map $m_{\gamma(a)} \colon  M_{\mu'} \to M_{\lambda'}$. Then the relation $s^h$ corresponds to commutativity of the following diagram. 
+\begin{equation}  \label{eq:refined}
+\begin{CD}
+k @>m_a \otimes M_{\mu}^*>> M_{\lambda} \otimes M_{\mu}^*\\
+@VV\text{id}V @VVg(\kappa)V\\
+k @>m_{\gamma(a)}\otimes M_{\mu'}^*>> M_{\lambda'} \otimes M_{\mu'}^*
+\end{CD}
+\end{equation}
+
+{\red I'm not convinced that the theory set out below is optimal. Seems the starting data is unnatural.}
+We now start abstractly with a finite dimensional algebra $A$ which can be expressed as the quotient of a path algebra $kQ$ by an admissible ideal. We can define $\textup{Wt}(Q)$ as before and now choose some $K \subseteq \textup{Wt}(Q)$ and let $\Lambda = \textup{Wt}(Q)/K$. We will assume that the composite $Q_0 \hookrightarrow \bZ Q_0 \to \tilde{\Lambda}:= \bZ Q_0/K$ is injective. For $\lambda \in \Lambda$, $Q_0 - \lambda \subset \tilde{\Lambda}$ and we may thus define $Q_{\lambda} = (Q_0 - \lambda) \cap Q_0$. For any subset $P \subseteq Q_0$, we define $A|_P = e_P A e_P$ where $e_P$ is the idempotent corresponding to the vertices in $P$. 
+\begin{definition}  \label{def:deindexaction}
+A {\em de-indexing action} consists of a collection of algebra isomorphisms $\gamma(\lambda) \colon A|_{Q_{\lambda}} \to A|_{Q_{\lambda} + \lambda}, \ \lambda \in \Lambda$ such that $\gamma(\lambda + \lambda') = \gamma(\lambda) \circ \gamma(\lambda')$ when restricted to $A|_P$ where $P\subseteq Q_0$ is the largest subset on which both sides are defined. 
+\end{definition}
+When $A$ is the $Q_0$-indexed algebra associated to the Cox ring $R$ above, then the canonical isomorphism of graded components gives a de-indexing action we call the {\em canonical de-indexing action}. 
+
+Assume given $K$ and a de-indexing action $\gamma$. 
+\begin{definition} \label{def:Kgammarefined}
+A {\em flat family of $(K,\gamma)$-refined representations} (over a test scheme $S$) consists of a flat family $M = \oplus M_v$ of $A$-modules over $S$ together with a categorification of $K$-relations $g \colon \cO_? \to M|_K$ such that diagram (\ref{eq:refined}) commutes for all $\lambda,\mu,\lambda',\mu' \in Q_0$ with $\kappa :=  \lambda - \mu - \lambda' + \mu' \in K$ and all $a \in A_{\lambda\mu}$. 
+\end{definition}
+
+We return to the original setting of Cox rings and immediately see. 
+\begin{theorem}
+Let $R$ be a $\Lambda$-graded algebra and pick $Q_0 \subset \Lambda$ so that $\textup{Wt}(Q)$ surjects onto $\Lambda$. Let $A$ be the associated $Q_0$-indexed algebra, $K$ be the kernel of $\textup{Wt}(Q) \to \Lambda$ and $\gamma$ be the canonical de-indexing action. Suppose finally that $Q_0$ captures all the relations in the Cox ring. Then the moduli stack of $(K,\gamma)$-refined representations is naturally isomorphic to $[\Spec R/ G]$ where $G = \Lambda^{\vee}$.
+\end{theorem}
+
 \section{An example: G-L projective spaces} \label{sec:HIMO}
 
 {\red this section needs work too and we need to be clear what the objective is here. I've put some suggestions below. I also found quite a few typos so need to check thoroughly.}
@@ -1002,11 +1018,11 @@ The following object is tilting in $D^b(\bX)$: $$T:= \bigoplus_{\vecx \in [0,d\v
 \end{theorem}
 
 \begin{corollary} \label{cr:HIMO}
-For the G-L projective space $\bX$, we have $\bX \simeq \bM^{\Pic} \simeq \bM'_{ref}$.
+For the G-L projective space $\bX$, we have $\bX \simeq \bM^{\Pic} \simeq \bM'_\textup{ref}$.
 \end{corollary}
 
 Corollary \ref{cr:HIMO} above follows from Theorems \ref{thm:stackfromquiver} and \ref{thm:mref}.
-We will give an alternative proof of it below by directly computing $\bM_{ref}$ and finding a stability parameter $\theta$ that stabilises $\bX$. We first unravel what a refined representation is in this setting.
+We will give an alternative proof of it below by directly computing $\bM_\text{ref}$ and finding a stability parameter $\theta$ that stabilises $\bX$. We first unravel what a refined representation is in this setting.
 
 Let $Q$ to be the quiver of sections of the collection of line bundles $$\{\cO(\vecx)\,|\,\vecx \in [0,d\vecc]\}\subset \Pic(\bX).$$
 The algebra $\End(T)$ is then a quotient of $kQ$ by some ideal $I$.
