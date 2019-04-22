@@ -1327,6 +1327,126 @@ The morphisms are $\bM'_{\textup{ref}} \rightarrow \bM^{\Pic}$ and $\bM^{\Pic} \
 This follows from observing that $(\cU \otimes_A^L L_{i+j})_0 = (\cU \otimes_A^L L_i)_j$.
 \end{proof}
 
+\begin{corollary}
+The stack $\bM_{ref}'$ is isomorphic to $\bX$.
+\end{corollary}
+
+\section{Global quotient presentation of $\bM_\text{ref}$}
+
+The moduli space of refined representations, as in the `not-refined' version, has a natural global quotient presentation.
+Given a refined quiver representation $(\cM_i, m_a, g_\kappa)$ over $k$, picking a basis for the $\cM_i$ to identify them with $k$ enables us to view the $m_a$ as elements of $k$ and $g\in \Lambda_r^{\vee}$. We thus obtain an element of the {\em refined representation space}, defined  to be \begin{equation*}
+\cR(Q, \vec{d}) := \bA^{Q_1} \times \Lambda_r^{\vee} \end{equation*}
+The ideal $I \triangleleft kQ$ defines a closed subscheme $\cR_A$ of $\cR(Q,\vec{d})$ parametrising $A$-modules with given bases. We define the gauge group to be
+\begin{equation*}
+\GL(\vec{d}) := \bG_m^{Q_0}.
+\end{equation*}
+If we identify $\Lambda_{Q_0}$ with the group of characters of $\GL(\vec{d})$ then it acts naturally on $\cR(Q, \alpha)$ by change of basis.
+Note that the diagonal one-parameter subgroup 
+$$\Delta = \{(\lambda, \ldots,\lambda) | \lambda \in \bG_m\} \leq \GL(\vec{d})$$ 
+acts trivially so there is an induced action of $\PGL(\vec{d}) := \GL(\vec{d}) / \Delta$.
+Taking the quotient by $\PGL(\vec{d})$ as opposed to $\GL(\vec{d})$ amounts to considering the rigidified moduli space as opposed to the unrigidified version. 
+An argument similar to the proof of \cite[Proposition 3.9]{Abd} shows that $\bM_{\text{ref}}$ is isomorphic to the quotient stack $[\cR_A/ \PGL(\vec{d})]$.
+
+\subsection{$\bM_{\text{ref}}'$ and GIT stability}
+
+We'll attempt to study the locus $\bM_{\text{ref}}'$, i.e.\ the one isomorphic to $\bX$, using GIT.
+First we make the following observation.
+%using GIT and attempt to identify the locus $\bM'_{\text{ref}}$ using stability. Before doing so we make the following observation about $\bM'_{\text{ref}}$.
+
+\begin{lemma}\label{lm:open}
+The subset $\bM_{\textup{ref}}' \subset \bM_{\textup{ref}}$ is open.
+\end{lemma}
+
+\begin{proof}
+Fix a pair of vertices $i,j$ and consider the object $(\cU \otimes^L_A L_j)_i \in D^b(\bM_\text{ref})$ where $\cU$ is the universal family on  $\bM_{\text{ref}}$. This is a complex is of rank one.
+First note that when restricted to the image of $\bX$, this complex is concentrated in degree zero and is quasi-isomorphic to the line bundle $\cT_i^{\vee} \otimes_{\bX} \cL_j$. This implies that the cohomology sheaves at nonzero degrees are torsion and furthermore, that the cohomology sheaf in degree zero is of rank one.
+The nonzero cohomology sheaves and the torsion part of the zero cohomology sheaf are supported on a closed set that does not contain the image of $X$. The complement of this subset is $\bM_{\text{ref}}'$ and hence the result.
+\end{proof}
+
+Lemma \ref{lm:open} hints that perhaps $\bM'_{\textup{ref}}$ is carved out by some GIT stability parameter. 
+%To examine this possibility, we recall the GIT approach to $\bM_{\textup{ref}}$. 
+%Given a refined quiver representation $(\cM_i, m_a, g_\kappa)$ over $k$, picking a basis for the $\cM_i$ to identify them with $k$ enables us to view the $m_a$ as elements of $k$ and $g\in \Lambda_r^{\vee}$. We thus obtain an element of the {\em refined representation space}, defined  to be \begin{equation*}
+%\cR(Q, \vec{d}) := \bA^{Q_1} \times \Lambda_r^{\vee} \end{equation*}
+%The ideal $I \triangleleft kQ$ defines a closed subscheme $\cR_A$ of $\cR(Q,\vec{d})$ parametrising $A$-modules with given bases. We define the gauge group to be
+%\begin{equation*}
+%\GL(\vec{d}) := \bG_m^{Q_0}.
+%\end{equation*}
+%If we identify $\Lambda_{Q_0}$ with the group of characters of $\GL(\vec{d})$ then it acts naturally on $\cR(Q, \alpha)$ by change of basis.
+%Note that the diagonal one-parameter subgroup 
+%$$\Delta = \{(\lambda, \ldots,\lambda) | \lambda \in \bG_m\} \leq \GL(\vec{d})$$ 
+%acts trivially so there is an induced action of $\PGL(\vec{d}) := \GL(\vec{d}) / \Delta$.
+%Taking the quotient by $\PGL(\vec{d})$ as opposed to $\GL(\vec{d})$ amounts to considering the rigidified moduli space as opposed to the unrigidified version. 
+%An argument similar to the proof of \cite[Proposition 3.9]{Abd} shows that $\bM_{\text{ref}}$ is isomorphic to the quotient stack $[\cR_A/ \PGL(\vec{d})]$.
+
+As discussed above, $\bM_{\text{ref}}$ is isomorphic to the quotient stack $[\cR_A/ \PGL(\vec{d})]$.
+%We will use GIT stability of the $\PGL(\vec{d})$ action on $\cR_A$ to attempt to identify $\bM'_{\text{ref}}$ in $\bM_{\text{ref}}$.
+Following King \cite{Ki}, one may define an intrisic notion of $\theta$-stability for refined representations equivalent to the GIT stability of the $\PGL(\vec{d})$ action on $\cR_A$,  see \cite[Definition 3.4]{Abd}. 
+Observe that $\Lambda_{{Q_0}\setminus \{0\}}$ may be identified with the characters of $\PGL(\vec{d})$ so we may consider the $\theta$-semistable points in $\cR_A$ for $\theta \in \Lambda_{{Q_0}\setminus \{0\}}$.
+We will use $\bM_{\textup{ref}}^\theta$ to denote the semistable locus of $\bM_{\textup{ref}}$.
+
+
+\begin{definition}
+Given a generic stability parameter $\theta \in \Lambda_{{Q_0}\setminus \{0\}}$ we say {\em $\theta$ stabilises $\bX$} if $f(x)$ is $\theta$-stable for all $x \in \bX$.
+In other words, {\em $\theta$ stabilises $\bX$} if $f \colon \bX \rightarrow \bM_{\textup{ref}}$ factors through $\bM_{\textup{ref}}^\theta$.
+%Furthermore, we say $\cT$ is {\em great} if there exists a great stability parameter in the corresponding $\Wt(Q)$.
+\end{definition}
+
+\begin{theorem}\label{thm:stab}
+Let $\theta \in \Lambda_{{Q_0}\setminus \{0\}}$ be a stability parameter that stabilises $\bX$ then the stacks $\bM_{\textup{ref}}' \simeq \bX$ are isomorphic to a connected component of $\bM_{\textup{ref}}^\theta$.
+\end{theorem}
+
+\begin{proof}
+The fact that $\theta$ stabilises $\bX$ gives a morphism $f \colon \bX \rightarrow \bM_{\text{ref}}^\theta$.
+This combined with Theorem \ref{thm:mref} and Lemma \ref{lm:open} gives that $f$ is an open embedding of $\bX$ in $\bM_{\text{ref}}^\theta$.
+% For simplicity, rigidify the moduli spaces $\bM, \bM^\cT$ and $\bM_{\text{ref}}$ by fixing $\cL_0 = \cO$. The image of $\bX$ is contained in the open set $\bU:=(\bM_{\text{ref}}^\theta \cap \bM_{\text{ref}}')$. We have now constructed morphisms 
+% $$ \bX \rightarrow \bU \rightarrow \bM^{\cT} \rightarrow \bX$$
+% whose composite is the identity. 
+%The family over $\bX$ that gives rise to the morphism $\bX \rightarrow \bU$ is given by the line bundles $\cL_i$'s with their tautological sections and $g(\chi) = \id$ for every $\chi \in K$.
+%Similarly the family over $\bX$ giving rise to the isomorphism $\bX \rightarrow \bM^\cT$ is given by the line bundles $\cL_i$'s, their tautological bundles and, given the rigidifying condition above, the identity for the isomorphisms $W \cong W \otimes_\bX \cL_i$. In particular the extra data used in defining the both morphisms, $g(\chi)$ in the case of $\bU$ and isomorphisms $W \cong W \otimes_\bX \cL_i$ in the case of $\bM^\cT$, is given by identity morphisms.
+% From our constructions, we see that the family over $\bU$ given by the pullback of the universal family over $\bU$ via the composite $\bU \rightarrow \bM^\cT \cong \bX \rightarrow \bU$ is isomorphic to the universal family. The same holds for the composite $\bM^\cT \cong \bX \rightarrow \bU \rightarrow \bM^\cT$. Hence $\bX \cong \bU$, 
+
+We also have that the image of the coarse moduli space $X$ under the coarse moduli map induced by $f$ is closed in the coarse moduli space of $\bM_\text{ref}^\theta$. 
+Since $\bX$ is embedded in $\bM_\text{ref}^\theta$ this implies that $f$ is a also a closed embedding.
+The result follows.
+\end{proof}
+
+\begin{remark}
+The existence of a $\theta$ that stabilises $\bX$ is part of the hypothesis of Theorem \ref{thm:stab}.
+We expect such $\theta \in \Lambda_{{Q_0}\setminus \{0\}}$ to exist in general.
+In fact, in Lemma \ref{lm:generic} below, we earmark a candidate.
+\end{remark}
+
+\begin{lemma}\label{lm:generic}
+There exists a stability condition $\theta \in \Lambda_{{Q_0}\setminus \{0\}}$ so that $\theta$ is generic, i.e.\ $\theta$-semistable implies $\theta$-stable, and $\textup{pic}(\theta)$ is the pullback of a very ample line bundle on the coarse moduli space $X$ of $\bX$.
+\end{lemma}
+
+\begin{proof}
+Definition 3.4 of \cite{Abd} only tests $\theta \in \Lambda_{Q_0}$ against filtrations $\cM_\bullet$ of $(\cM_i, m_a)$ that satisfy $\kappa(W_\bullet)=0$ for all $\kappa\in \Lambda_r \subset \Lambda_{Q_0}$.
+In other words, stability is only dependent on the class of $\theta$ in $\Lambda_{Q_0}/\Lambda_r$.
+Now $\cT$ generates $D^b(\bX)$ so the homomorphism $\text{pic}\colon \Lambda_{Q_0} \rightarrow \Pic(\bX)$ is surjective and we have an isomorphism $\Lambda_{Q_0}/\Lambda_r \simeq \Pic(\bX)$.
+Furthermore, ampleness is a generic condition in $\Pic(X)_\bQ \simeq \Pic(\bX)_\bQ$.
+Therefore, if necessary, one may perturb $\theta$ so that it is generic and $\text{pic}(\theta)$ is pulled back from the ample cone of $X$.
+\end{proof}
+
+\begin{remark}\label{rm:generic}
+The statement corresponding to Lemma \ref{lm:generic} is not true when applied to the moduli of quiver representations of the tilting quiver of a general projective DM stack.
+\end{remark}
+
+\subsection{Multilinear series and refined representations}
+In this subsection we relax the tilting condition on our bundle $\cT = \oplus \cT_i$; we emphasis this by switching notation to $\cL= \oplus \cL_i$.
+Following Craw-Smith theory of multi-linear series \cite{Craw-Smith}, given a projective DM stack with a finite subset $Q_0$ of $\Pic(\bX)$ we construct a moduli space of refined representations $\bM_\text{ref}$ and a morphism $\bX \rightarrow \bM_\text{ref}$ in what follows.
+
+
+Take $R$ to be the Cox ring of $\bX$ corresponding to the subgroup $\langle Q_0 \rangle \subseteq \Pic \bX$ and $A$ to be the associated $Q_0$-indexed algebra.
+If we use $R(\lambda)$ to denote the graded shift of $R$ by $\lambda \in \Lambda$ then this is just the graded endomorphism algebra
+$$ A = \End_{R-\Gr} \bigoplus_{\lambda \in Q_0} R(\lambda).$$
+As usual, there is a quiver $Q = (Q_0,Q_1)$ such that $A$ is naturally a quotient of $kQ$. 
+We write the Peirce components as $A_{\lambda\mu} = \Hom_{R-\Gr}(R(\lambda),R(\mu))$. Note that if $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$, then there is a canonical isomorphism of Peirce components $\gamma = \gamma(\lambda,\mu;\lambda',\mu') \colon A_{\lambda\mu} \to A_{\lambda'\mu'}$ since both are canonically isomorphic to $R_{\lambda - \mu}$. Hence, graded components of the Cox ring $R$ may become ``separated'' in the $Q_0$-indexed algebra $A$.
+
+We define the quiver algebra as in Cox ring section.
+Consider the hom from kQ to R and then see that the ideal of relations defines a subset which is then equal to M but shouldn't be equal to X.
+Even the hom is surjective then we may recover the stack as a open theta stable subset.
+
 \bibliographystyle{amsalpha}
 \bibliography{references}
 
