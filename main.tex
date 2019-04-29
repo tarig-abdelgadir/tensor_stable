@@ -1185,7 +1185,7 @@ Tensoring over $S$ induces the required isomorphisms $\xi_\chi \colon \cM_\chi \
 
 The other two functors of interest $L_?$ and $\cM_?^{\text{can}}$ are given as follows.
 The functor $L_?$ takes the value  $(\cM \otimes_A^L L_\chi)_0$ for $0 \in Q_0$ our special vertex and $\chi \in \Lambda_{Q_0}$ a general element {\red is $L_?$ monoidal?}.
-For $\cM_?^{\text{can}}$, we begin by picking a quasi-inverse of the triangulated equivalence given by the natural inclusion $K^b(\Proj A) \rightarrow D^b(A)$. {\red I feel we don't need to introduce this until we get to the ``from refined to Picard stable part''} 
+For $\cM_?^{\text{can}}$, let $K^b(P_i)$ be the homotopy category of complexes whose componentes are direct sums of the projectives $P_i := A\bfe_i$, we begin by picking a quasi-inverse of the triangulated equivalence given by the natural inclusion $K^b(P_i) \rightarrow D^b(A)$. {\red I feel we don't need to introduce this until we get to the ``from refined to Picard stable part''} 
 Given $\chi \in \Lambda_{Q_0}$, the image of the module $L_\chi$ under this functor $D^b(A) \rightarrow K^b(\Proj A)$ is a complex whose components are direct sums of projectives of the form $A\bfe_k$.
 We then have an expression of $(\cM \otimes_A^L L_\chi)_0$ as a complex whose components are direct sums of $\cM_i$.
 Take $\cM_?^{\text{can}}$ to be the determinant of this complex of $S$-bundles.
@@ -1331,12 +1331,13 @@ This follows from observing that $(\cU \otimes_A^L L_{i+j})_0 = (\cU \otimes_A^L
 The stack $\bM_{ref}'$ is isomorphic to $\bX$.
 \end{corollary}
 
-\section{Global quotient presentation of $\bM_\text{ref}$}
+\section{Global quotient presentation of $\bM_\textup{ref}$}
 
 The moduli space of refined representations, as in the `not-refined' version, has a natural global quotient presentation.
-Given a refined quiver representation $(\cM_i, m_a, g_\kappa)$ over $k$, picking a basis for the $\cM_i$ to identify them with $k$ enables us to view the $m_a$ as elements of $k$ and $g\in \Lambda_r^{\vee}$. We thus obtain an element of the {\em refined representation space}, defined  to be \begin{equation*}
-\cR(Q, \vec{d}) := \bA^{Q_1} \times \Lambda_r^{\vee} \end{equation*}
-The ideal $I \triangleleft kQ$ defines a closed subscheme $\cR_A$ of $\cR(Q,\vec{d})$ parametrising $A$-modules with given bases. We define the gauge group to be
+Given a refined quiver representation $(\cM_i, m_a, g_\kappa)$ over $k$, picking a basis for the $\cM_i$ to identify them with $k$ enables us to view the $m_a$ as elements of $\bA^1$ and $g\in \Lambda_r^{\vee}$. We thus obtain an element of the {\em refined representation space}, defined  to be \begin{equation*}
+\cR(Q, \vec{d}) := \bA^{Q_1} \times \Lambda_r^{\vee}. \end{equation*}
+We use $\cR_A$ to denote the closed subscheme of $\cR(Q, \vec{d})$ whose elements descend to representations of $A \simeq kQ/I$ and make the diagrams in (\ref{eqn:refined}) commute.
+We define the gauge group to be
 \begin{equation*}
 \GL(\vec{d}) := \bG_m^{Q_0}.
 \end{equation*}
@@ -1432,20 +1433,111 @@ Therefore, if necessary, one may perturb $\theta$ so that it is generic and $\te
 The statement corresponding to Lemma \ref{lm:generic} is not true when applied to the moduli of quiver representations of the tilting quiver of a general projective DM stack.
 \end{remark}
 
-\subsection{Multilinear series and refined representations}
-In this subsection we relax the tilting condition on our bundle $\cT = \oplus \cT_i$; we emphasis this by switching notation to $\cL= \oplus \cL_i$.
-Following Craw-Smith theory of multi-linear series \cite{Craw-Smith}, given a projective DM stack with a finite subset $Q_0$ of $\Pic(\bX)$ we construct a moduli space of refined representations $\bM_\text{ref}$ and a morphism $\bX \rightarrow \bM_\text{ref}$ in what follows.
+\subsection{An especially nice situation}
+In this subsection we investigate a case when the isomorphism $\bX \simeq \bM_\text{ref}^\theta$ is more direct than has been discussed so far.
+From here on we will assume that $\bX$ is a Mori-dream stack, i.e.\ that $\bX$ has a finitely generated Cox ring $R$ and that $$\bX \simeq \bigg[\frac{\Spec(R) \setminus V(B_\theta)}{\Pic(\bX)^\vee}\bigg]$$ for $B_\theta$ the irrelevant ideal given by some ample line bundle $\theta \in \Pic(\bX)$.
+We take $S$ to be the Cox ring of the moduli space $\bM$. The ring $S$ is naturally graded by $\Lambda_{Q_0\setminus\{0\}}$; the graded component $S_{j-i}$ has a natural $k$-basis given by $\bfe_i A \bfe_j$.
+Note that $\bM \simeq [\Spec(S)/\PGL(\vec{1})]$. 
+The morphism $f \colon \bX \rightarrow \bM$ is induced from tautological homomorphism of Cox rings $\Phi \colon S \rightarrow R$ with the group homomorphism $f^* \colon \Lambda_{Q_0} \rightarrow \Pic(\bX)$ intertwining the grading.
+
+As discussed just above Definition \ref{def:refined}, for any two pairs of elements $(i,j)$ and $(k,l)$ of $Q_0$ for which $(\chi_i + \chi_l)-(\chi_j + \chi_k) \in \text{ker}(f^*)$ we have an isomorphism of Peirce components $\gamma(i,j;k,l) \colon \bfe_i A \bfe_j \xrightarrow{\sim} \bfe_k A \bfe_l$. 
+This induces an isomorphism $\gamma(i,j;k,l) \colon S_{j-i} \xrightarrow{\sim} S_{l-k}$.
+Hence graded components of the Cox ring $R$ may become `separated' in the $Q_0$ indexed algebra $A$.
+This separation of components gives rise to some obvious elements of $\ker \Phi$ that have the form 
+\begin{equation}  \label{eq:deindex}
+    y - \gamma(i,j;k,l) (y)
+\end{equation}
+where $y \in S_{j-i}$ and $i,j,k,l \in Q_0$ are such that $(\chi_i + \chi_l)-(\chi_j + \chi_k) \in \text{ker}(f^*)$. 
+We let $I_{\textup{de}}\subseteq \ker \Phi$ be the $\Lambda$-graded ideal generated by these elements.
+
+\begin{definition}
+We say our collection {\em captures the Cox ring of $\bX$} if $\Phi$ is surjective descends to an isomorphism $S/I_{de} \simeq R$.
+\end{definition}
+
+In the following we demonstrate how the isomorphism $\bX \simeq \bM_{\text{ref}}^\theta$ can be obtained from the ring homomorphism $\Phi$ when $\cT$ captures the Cox ring of $\bX$.
+To further clarify, this is precisely when the difference between $S$ and $R$ is only due to the separation of Peirce components discussed above.
+
+The short exact sequence of abelian groups
+\begin{equation} \label{eq:defineF}
+     0 \to \Lambda_r \to \Lambda_{Q_0\setminus\{0\}} \to \Pic(\bX) \to 0
+\end{equation}
+will, as always, play a crucial role.
+%The homomorphism $\Phi$ is surjective so $\Spec(R)$ is a closed subscheme of $\Spec(S)$ cut out by the ideal $I:= \ker \Phi$.
+The group $\PGL(\vec{1})$, which is $\Lambda_{Q_0\setminus\{0\}}^\vee$, acts diagonally on $\Spec S \times \Lambda_r^\vee$ so $$[\Spec R/\Pic(\bX)^\vee] \simeq [V/\PGL(\vec{1})]$$ where $\Spec S \times \Lambda_r^\vee$ is the $\PGL(\vec{1})$-orbit of $\Spec S \times 1 \subseteq \Spec S \times \Lambda_r^\vee$.
+The refined representation space $\cR_A$ is a closed subscheme of $\Spec S \times \Lambda_r^\vee$ cut-out by the commutative diagrams (\ref{eqn:refined}).
+We'll eventually show that in this setting $\cR_A = V$.
+
+We clarify what $V$ is. 
+Let $\frakm\triangleleft k\Lambda_r$ be the maximal ideal corresponding to $1 \in \bT/G$. 
+Then $V$ is the closed subscheme defined by the ideal sheaf
+$$ I_V := \bigcap_{\tau \in \PGL(\vec{1})} \tau.\left(I \otimes k\Lambda_r + S \otimes \frakm \right)$$
+To compute this, we need some notation. 
+Recall that $I$ is only $\Pic(\bX)$-homogeneous. Let $s \in I$ be a $\Pic(\bX)$-homogeneous element. 
+Then we can express it as a sum of $\Lambda_{Q_0\setminus\{0\}}$-homogeneous elements $s = s_1 + \ldots + s_m$ all of whose degrees lie in the same coset of $\Lambda_r$. 
+Hence we can pick $\kappa_i \in \Lambda_r$ such that $s^h := s_1 \otimes \kappa_1 + \ldots + s_m \otimes \kappa_m$ is $\Lambda_{Q_0\setminus\{0\}}$-homogeneous. 
+The {\em homogenisation} $s^h$ is only defined up to multiplication by some $\kappa \in \Lambda_r$. 
+
+\begin{lemma}
+Let $\Sigma \subset I$ be a set of $\Lambda$-homogeneous generators of $I$ then $I_V = \langle s^h \,|\, s \in \Sigma \rangle.$ 
+\end{lemma}
+
+Under the assumption that $\cT$ captures the Cox ring of $\bX$ we have that $I$ is generated by elements of the form $s:= y - \gamma (y)$ for some $\Lambda_{Q_0\setminus\{0\}}$-homogeneous element $y \in S$.
+Its homogenisation $s^h$ can be encoded moduli-theoretically on the refined representation as follows.
+Take $(\cM_i, m_a, g)$ a $k$-point of $\bM_\text{ref}$.
+Suppose that $i,j,k,l \in Q_0$ are such that $\kappa:= (\chi_i + \chi_l)-(\chi_j + \chi_k) \in \Lambda_r$. 
+The refinement data $g$ thus gives an isomorphism $g_{\kappa} \colon \Hom_k(\cM_i,\cM_j) \to \Hom_k(\cM_k,\cM_l)$. 
+Suppose $a \in \bfe_i A \bfe_j$ so we have a  multiplication by $a$ map $m_a \colon \cM_i \to \cM_j$ and multiplication by $\gamma(a)$ map $m_{\gamma(a)} \colon  \cM_{k} \to \cM_{l}$. Then the relation $s^h$ corresponds to commutativity of the following diagram. 
+\begin{equation}  \label{eq:refined}
+\begin{CD}
+k @>m_a \otimes \cM_{i}^*>> \cM_{j} \otimes \cM_{i}^*\\
+@VV\text{id}V @VV{g_\kappa}V\\
+k @>m_{\gamma(a)}\otimes \cM_{k}^*>> \cM_{l} \otimes \cM_{k}^*
+\end{CD}
+\end{equation}
+This is precisely the tensor product of the diagram (\ref{eqn:refined}) by $(\cM_i \otimes \cM_k)^*$.
+Hence $\cR_A = V$.
+
+\begin{corollary}
+The ring homomorphisms $\Phi$ along with the intertwining homomorphism $f^*$ give an isomorphism of stacks $$\bigg[\frac{\Spec R}{\Pic(\bX)^\vee}\bigg] \simeq \bigg[\frac{\cR_A}{\PGL(\vec{1})}\bigg].$$
+\end{corollary}
+
+\begin{corollary}
+There is a GIT parameter $\theta \in \Lambda_{Q_0}$ for which $\bX \simeq \bM_\textup{ref}^\theta$.
+\end{corollary}
+
+\begin{example}
+GL-projective spaces.
+\end{example}
+
+% \subsection{Multilinear series and refined representations}
+% The definition of families of refined representations Definition \ref{def:refined} does not use the fact that the bundle $\oplus T_i$ is tilting.
+% In this subsection we relax the tilting condition on our bundle $\cT = \oplus \cT_i$; we emphasis this by switching notation to $\cL= \oplus \cL_i$.
+% Following Craw-Smith theory of multi-linear series \cite{Craw-Smith}, given a projective DM stack $\bX$ with a finite subset $Q_0$ of $\Pic(\bX)$ we study the moduli space of refined representations $\bM_\text{ref}$ and the corresponding morphism $\bX \rightarrow \bM_\text{ref}$ in what follows.
 
 
-Take $R$ to be the Cox ring of $\bX$ corresponding to the subgroup $\langle Q_0 \rangle \subseteq \Pic \bX$ and $A$ to be the associated $Q_0$-indexed algebra.
-If we use $R(\lambda)$ to denote the graded shift of $R$ by $\lambda \in \Lambda$ then this is just the graded endomorphism algebra
-$$ A = \End_{R-\Gr} \bigoplus_{\lambda \in Q_0} R(\lambda).$$
-As usual, there is a quiver $Q = (Q_0,Q_1)$ such that $A$ is naturally a quotient of $kQ$. 
-We write the Peirce components as $A_{\lambda\mu} = \Hom_{R-\Gr}(R(\lambda),R(\mu))$. Note that if $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$, then there is a canonical isomorphism of Peirce components $\gamma = \gamma(\lambda,\mu;\lambda',\mu') \colon A_{\lambda\mu} \to A_{\lambda'\mu'}$ since both are canonically isomorphic to $R_{\lambda - \mu}$. Hence, graded components of the Cox ring $R$ may become ``separated'' in the $Q_0$-indexed algebra $A$.
 
-We define the quiver algebra as in Cox ring section.
-Consider the hom from kQ to R and then see that the ideal of relations defines a subset which is then equal to M but shouldn't be equal to X.
-Even the hom is surjective then we may recover the stack as a open theta stable subset.
+% Take $R$ to be the Cox ring of $\bX$ corresponding to the subgroup $\langle Q_0 \rangle \subseteq \Pic \bX$ and $A$ to be the associated $Q_0$-indexed algebra.
+% If we use $R(\lambda)$ to denote the graded shift of $R$ by $\lambda \in \Lambda$ then this is just the graded endomorphism algebra
+% $$ A = \End_{R-\Gr} \bigoplus_{\lambda \in Q_0} R(\lambda).$$
+% As usual, there is a quiver $Q = (Q_0,Q_1)$ such that $A$ is naturally given by $kQ/I$.
+% For $\bM$, the rigidified moduli stack of $A$-modules of dimension vector $\vec{1}$, we have a universal morphism $f \colon \bX \rightarrow \bM$.
+
+% The moduli space $\bM$ may be expressed as global quotient as follows.
+
+
+% Let $S$ denote the symmetric algebra generated by the sets $A_{\lambda\mu}$ for every $(\lambda, \mu) \in Q_0^2$; this ring is canonically isomorphic to $k[y_a \,|\, a \in Q_1]$.
+% The ring $S$ is naturally $\bZ^{Q_0}$ graded https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=gestione%20affidatawith $\deg(y_a) = - \chi_{t(a)} + \chi_{h(a)}$.
+% Furthermore, $S$ comes with a universal homomorphism of $\bZ^{Q_0}$-graded rings to $R$ taking $y_a$ to its corresponding section in $\Hom(R(t(a)),\, R(h(a)))$.
+% The final component of the ideal 
+% $$I_Q := \langle y_p - y_{p'} \, | \, p,p' \in A_{\lambda\mu}, $$
+
+ 
+
+% We write the Peirce components as $A_{\lambda\mu} = \Hom_{R-\Gr}(R(\lambda),R(\mu))$. Note that if $\lambda,\mu,\lambda',\mu' \in Q_0$ are such that $\lambda - \mu = \lambda' - \mu'$, then there is a canonical isomorphism of Peirce components $\gamma = \gamma(\lambda,\mu;\lambda',\mu') \colon A_{\lambda\mu} \to A_{\lambda'\mu'}$ since both are canonically isomorphic to $R_{\lambda - \mu}$. Hence, graded components of the Cox ring $R$ may become ``separated'' in the $Q_0$-indexed algebra $A$.
+
+% We define the quiver algebra as in Cox ring section.
+% Consider the hom from kQ to R and then see that the ideal of relations defines a subset which is then equal to M but shouldn't be equal to X.
+% Even the hom is surjective then we may recover the stack as a open theta stable subset.
 
 \bibliographystyle{amsalpha}
 \bibliography{references}
