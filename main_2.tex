@@ -35,80 +35,65 @@ Australia
 \begin{document}
 \maketitle
 
+\begin{abstract}
+In this paper, we look at the problem of modular realisations of derived equivalences, and more generally, the problem of recovering a Deligne-Mumford stack $\bX$ and a bundle $\cT$ on it, via some moduli problem (on $\bX$ or $A = \End_{\bX} \cT$). The key issue is, how does one incorporate some of the monoidal structure of $\Coh(\bX)$ into the moduli problem. To this end, we introduce a new moduli stack, the tensor stable moduli stack which generalises the notion of the Serre-stable moduli stack. We then show how it can be used both for stack recovery and the modular realisation problem for derived equivalences. We also study the moduli of refined representations and how it addresses these problems. Finally, we relate the two approaches when $\cT$ is a tilting bundle which is a direct sum of line bundles. 
+\end{abstract}
+
 \section{Introduction}
 
-Moduli spaces are a fruitful way to study a $k$-linear abelian category {\sf C}.
-For example, for $G \subset \SL(2,k)$ a finite group we may take {\sf C} to be the category of $G$-equivariant $k[x,y]$-modules or take take {\sf C} to be a noncommutative deformation of coherent sheaves on a projective plane. 
-In the first case, the moduli space of objects in {\sf C} with natural discrete invariants recovers the minimal resolution of $\bA^2/G$.
-In the later, the moduli space of point modules, \`a la Artin-Tate-van den Bergh \cite{ATV}, gives an elliptic curve.
-This curve along with its universal line bundles gives us a presentation of the {\sf C} as the category of graded modules on a twisted homogeneous coordinate ring.
+Moduli spaces are a fruitful way to study a $k$-linear abelian category {\sf C}. The McKay correspondence provides one spectacular example. Here, we let $G \subset \SL(2,k)$ be a finite group and take {\sf C} to be the category of $G$-equivariant $k[x,y]$-modules. There is a natural moduli space of objects in {\sf C}, corresponding to some natural discrete invariant, which recovers the minimal resolution of $\bA^2/G$. Another highly influential example is the point scheme of Artin-Tate-van den Bergh \cite{ATV90}. Here {\sf C} is the category of graded modules over some noncommutative graded algebra. The point scheme is the rigidified moduli space of ``point modules'' in {\sf C}. In the case of the 3-dimensional Sklyanin algebra, this point scheme is an elliptic curve, and the algebra can be fully analysed since it has a codimension one quotient which is a twisted version of a homogeneous co-ordinate ring on the elliptic curve.
 
-The above examples may tempt one to think that the only interesting moduli space to study is the moduli stack $\bM$ of isomorphism classes of objects in {\sf C}.
-Sometimes, however, that is not the case.
-In many settings, the categories in question lend themselves better to Deligne-Mumford (DM) stacks, none more so than $\text{\sf C}=\Coh(\bX)$ for a DM stack $\bX$.
-In this case, as in other such {\sf C}, there are at least two obstructions to expressing $\bX$ as tautological moduli problem on $\Coh(\bX)$. 
-Firstly, the na\"ive analogue of Gabriel-Rosenberg theorem of reconstructing schemes from their abelian categories of quasi-coherent sheaves fails for DM stacks.
-The other obstruction is the fact that objects in abelian categories have connected automorphism groups.
+This raises the natural question, what moduli problems should one study, and the above examples may tempt one to think that the only interesting one is the (rigidified) moduli of isomorphism classes of objects in {\sf C}. However, this is far from the case, and the easiest way to appreciate this is the {\em tautological moduli problem}: How do you recover a Deligne-Mumford (DM) stack $\bX$ as a (rigidified) moduli problem on $\text{\sf C}=\Coh(\bX)$? As stated in this generality, this problem is doomed to failure, for objects in abelian categories have connected automorphism groups whereas the stabiliser groups of DM stacks are finite groups. A deeper reason is that Gabriel-Rosenberg's theorem for reconstructing schemes from their abelian categories of quasi-coherent sheaves fails for DM stacks.
 
-Lurie's Tannakian duality for geometric stacks \cite{Lurie} provides the inspiration to get around these issues: Theorem 5.11 in \cite{Lurie} states that one may recover $\bX$ from its monoidal abelian category $(\Coh(\bX), \otimes)$.
-Therefore the key to posing a moduli problem that would $\bX$ from {\sf C} is to enhance the data of an object in $\bX$ with data from the monoidal structure on {\sf C}.
-This will be the strategy we adopt in this article.
-The second issue, the one regarding the connectedness of the automorphism, happens to be a result of the first and disappears once one has made the correct monoidal adjustments as is suggested by the classical Tannakian duality for finite groups.
+Lurie's Tannakian duality for geometric stacks \cite{Lurie} provides the inspiration to get around these issues: \cite[Theorem 5.11]{Lurie} states that one may recover $\bX$ from its monoidal abelian category $(\Coh(\bX), \otimes)$. Therefore the key to solving the tautological moduli problem is to remember some of the monoidal structure of  $\Coh(\bX)$. One of the main goals of this paper is to construct and study interesting moduli stacks on an abelian category {\sf C} which somehow incorporate residues of this monoidal structure in {\sf C} (note {\sf C} is not necessarily monoidal). Gabriel-Rosenberg's theorem shows that we need not remember all the monoidal structure. The moduli stacks of interest for us are those which address either the tautological moduli problem above, or the related problem of {\em modular realisations of derived equivalences}. The latter seeks to express a derived equivalence between {\sf C} and $\bX$ as a Fourier-Mukai transform whose kernel is the universal bundle for some moduli problem on {\sf C}. 
 
-In this article, we begin attempting to address the need for a {\em tautological moduli problem} on a DM stack $\bX$.
-Now when $\bX=X$ is a separated scheme, there is an obvious choice for this tautological moduli problem. Take $\Delta \subset X \times X$ to be the diagonal, then $\cO_{\Delta}$ is the universal skyscraper sheaf on $X$. 
-For stacks, it is not clear what the correct notion of a skyscraper sheaf is since they can ``fractionate'' in the language of physics. 
-In Section~\ref{sec:sky}, we address this problem and define the moduli stack $\bM$ of skyscraper sheaves.
-The way we incorporate the monoidal structure of $\Coh(\bX)$ into $\bM$ is inspired by ideas in Chan-Lerner \cite{CL}.
-We consider line bundles $\cL_1,\ldots, \cL_s \in \Pic \bX$ and the corresponding rationally defined self-maps $\cL_i \otimes_{\bX} (?) \colon \bM \dashrightarrow \bM$. 
+%The second issue, the one regarding the connectedness of the automorphism, happens to be a result of the first and disappears once one has made the correct monoidal adjustments as is suggested by the .
+
+The first moduli stack we construct  generalises the rather ad hoc Serre stable moduli stack introduced in  Chan-Lerner's \cite{CL}. To motivate this, we consider the case where $\bX=X$ is a separated scheme and  there is a simple solution to the tautological moduli problem. Take $\Delta \subset X \times X$ to be the diagonal, then $\cO_{\Delta}$ is the universal skyscraper sheaf on $X$. For stacks, it is not clear what the correct notion of a skyscraper sheaf is since they can ``fractionate'' in the language of physics. In Section~\ref{sec:sky}, we address this problem and define the moduli stack $\bM$ of skyscraper sheaves.
+To incorporate the monoidal structure, we consider line bundles $\cL_1,\ldots, \cL_s \in \Pic \bX$ and the corresponding rationally defined self-maps $\cL_i \otimes_{\bX} (?) \colon \bM \dashrightarrow \bM$. 
 The {\em tensor stable moduli stack} $\bM^{\cL_1,\ldots,\cL_s}$ is defined in Definition~\ref{defn:doubletensor} as a mild modification of the simultaneous fixed point stack. 
-One of our main results is the following rather imprecise re-statement of Theorem~\ref{thm:tautological}.
+One of our main results is the following rather imprecise re-statement of Theorem~\ref{thm:tautological} which vastly generalises the rather ad hoc \cite[Theorem~9.6]{CL}.
 \begin{theorem}
 Let $\bX$ be a separated quasi-projective stack and suppose that $\cL_1\oplus \ldots \oplus \cL_s$ is faithful. Then $\bM^{\cL_1,\ldots,\cL_s} \simeq \bX$.
 \end{theorem}
-\noindent Unfortunately, the hypothesis on $\cL_1\oplus \ldots \oplus\cL_s$ implies that the stabiliser groups of $\bX$ are all abelian. 
-However, it applies in particular, to the weighted (a.k.a. G-L) projective spaces of \cite{HIMO}, an example we look at in Section~\ref{sec:HIMO}.
+\noindent The hypothesis on $\cL_1\oplus \ldots \oplus\cL_s$ implies that the stabiliser groups of $\bX$ are all abelian. Fortunately, this is good enough for applications to the weighted (a.k.a. G-L) projective spaces of Herschend-Iyama-Minamoto-Opperman \cite{HIMO}, an example we look at in Section~\ref{sec:HIMO}. It also applies to the weighted projective surfaces studied in \cite{C17}. We remark that, incorporating monoidal structure in this way, also solves the aforementioned issue of connected automorphism groups in a manner reminiscent of classical Tannakian duality for finite groups.
 
-Another setting in which stacks are natural is that of Ringel's canonical algebras which by Geigle-Lenzing \cite{GL} are derived equivalent to to weighted projective lines.
-Indeed, only recently, Abdelgadir-Ueda \cite{AU} and \cite{CL} introduced new moduli stacks to exhibit the Geigle-Lenzing derived equivalences as Fourier-Mukai transforms induced by universal modules on appropriate moduli stacks.
-The ideas therein are driving forces behind the work done here.
-What is striking, however, is how differently \cite{AU} and \cite{CL} incorporate the monoidal structure needed for stack recovery. 
-The latter introduces the {\em Serre stable moduli stack} which essentially is the fixed point stack of the rational self map $S\colon \bM \dashrightarrow \bM$ where $S$ is induced by a cohomological shift of the Serre functor (see Section~\ref{sc:equaliserstack}). 
-The former involves moduli of {\em refined representations} where the data of an $A$-module is enriched by {\em refinement data} (see Definition~\ref{def:refined}).
-Addressing this apparent discrepancy is one of the goals of this work.
+We turn our attention now to the modular realisation problem, which was recently solved in the special case of Geigle-Lenzing \cite{GL} derived equivalences in \cite{CL} and Abdelgadir-Ueda's \cite{AU}. To this end, let $\bX$ be a DM stack that possesses a tilting bundle $\cT$. Consider the endomorphism algebra $A = \End_{\bX} \cT$ which can be written as $kQ/I$ for some quiver $Q$ and admissible ideal $I$. Our starting point is the moduli stack $\bM$ of $A$-modules of dimension vector $\vec{d}$, rigidified so as to remove the common automorphism group $\bG_m$. 
 
-Furthermore, both methods have their limitations and in no way claim to provide a general framework.
-For example, the Serre stable moduli stack fails when the stack has non-cyclic stabilisers and is of dimension greater than 1. 
-This suggests that there are lots of interesting moduli stacks out there waiting to be discovered.
-One major goal of this paper is to construct such moduli stacks.
-
-In a similar fashion to \cite{GL}, let $\bX$ be a DM stack that posses a tilting bundle $\cT$ that is a direct sum of line bundles.
-For the endomorphism algebra $A = \End_{\bX} \cT$, we show in Section~\ref{sc:tensor_stable} how to construct the analogous tensor stable moduli stack $\bM^{L_1,\ldots,L_s}$ of $A$-modules. 
-Theorem~\ref{thm:stackfromquiver}, under mild hypotheses, gives a modular realisation of the derived equivalence induced by $\cT$.
-This follows the ideas leading to the Serre-stable moduli space in \cite{CL}.
-In the case where $\bX$ is a scheme, the result here is similar to that in \cite{MR2421120}; it is, however, important to note that the theorem in this paper uses the full force and naturality of moduli theory and does not rely on smoothness or pointwise arguments.
-
-Staying in the setting where $\bX$ posses such a tilting bundle, we take the quiver route, i.e.\ $A \cong kQ/I$ for some quiver $Q$.
-Furthermore, the moduli space $\bM$ is then a moduli space of quiver representations.
-In Section~\ref{sec:refined}, we enhance families of quiver representations with {\em refinement data} encoding the required monoidal structure.
-We go on to construct moduli spaces $\bM_\text{ref}$ parametrising them and eventually get the following result.
-\begin{theorem}  \label{thm:samemoduli}
-Let $\cT$ be a tilting bundle on $\bX$ whose components are line bundles. 
-Then there is an open subset $\bM_{\textup{ref}}'$ of $\bM_{\textup{ref}}$ is isomorphic $\bM^{L_1,\ldots,L_s}$ and hence $\bX$.
+One natural approach we follow is to use the derived equivalence $F = \RHom_{\bX}(\cT,?)$ to try to transfer the tautological moduli problem to one realising $F$. This works for the tensor stable moduli stack as follows. The functors $\cL_i \otimes_{\bX}(?)$ now correspond to two-sided tilting complexes $L_i$ over $A$, and the only monoidal structure on $\Coh(\bX)$ we remember are the auto-functors $(?) \otimes^L_A L_i$ on $D^b(A)$. These now give partially defined self-maps on $\bM$ and $\bM^{L_1,\ldots,L_s}$ can be defined as before. This leads to Theorem~\ref{thm:stackfromquiver} which we state imprecisely as,
+\begin{theorem}  \label{thm:2}
+Under ampleness conditions on $\cL_i, \cT$, there is a natural isomorphism  $\bX \simeq \bM^{L_1,\ldots,L_s}$. Furthermore, the data of the universal object includes the universal $A$-module $\cT^{\vee}$, which can be used to realise the derived equivalence as a Fourier-Mukai transform. 
 \end{theorem}
+The higher dimensional generalisation \cite{HIMO} of the Geigle-Lenzing derived equivalence can in particular, be realised using this theorem. 
+We remark that, in the case where $\bX$ is a scheme, the result here is similar to Bergmann-Proudfoot's \cite{MR2421120}. It is, however, important to note that our theorem and approach use the full force and naturality of moduli theory, and do not rely on the restrictive smoothness or pointwise arguments found in \cite{MR2421120}.
 
-On the face of it the moduli of refined representations seems a long way away from that used in defining the tensor-stable moduli space.
-In $\bM_\text{ref}$ an $S$-point is supplemented with the refinement data $g$ while in $\bM^{L_1,\ldots,L_s}$ it is enriched by different {\em tensor stability} data which we will denote by $\psi$.
-However, the proof of Theorem~\ref{thm:samemoduli} directly relating these two bits of data and showing that their corresponding moduli problems give (essentially) the same answer.
-This unites the approaches developed in \cite{AU} and \cite{CL}.
+We next look at the approach of {\em refined representations} as per \cite{AU}, which incorporates the monoidal structure in a rather different way. It is convenient now to restrict to the case where $\cT$ is a direct sum of line bundles $\cT_i$, but not necessarily a tilting bundle, and the dimension vector is the constant $\vec{1}$. These starting hypotheses and the general approach here have their origin in Craw-Smith's \cite{Craw-Smith} theory of multilinear series and Abdelgadir's generalisation to toric stacks \cite{Abd}. Whereas they were interested in embedding stacks in moduli spaces, we seek to recover $\bX$ as a moduli problem on ${\sf C} = A-\text{mod}$. Of course, there needs to be conditions on $\cT$, and tilting is but one we consider.
+In the refined representations approach, families of $A$-modules are enhanced with refinement data $g$ (see Section~\ref{sec:refined}). 
+This data is designed precisely to ensure that relations among the tilting bundles $\cT_i$ in $\Pic(\bX)$ are preserved by the universal bundles $\cU_i$.
+That is, the monoidal data structure we remember here is the kernel $\Lambda_r$ of the composite $\Lambda_{Q_0} \to \Pic \bM \to \Pic \bX$ which sends the $i$-th universal bundle $\cU_i$ to $\cT_i$.
+This enhancement of $A$-modules has the effect of reducing the stabiliser groups of refined representations to subgroups of the dual group $(\Pic \bX)^\vee$ as opposed to the larger $\Lambda_{Q_0}^\vee$ as they are for $A$-modules (we ignore rigidification issues here for clarity).
+Note that if $i,i',j,j' \in Q_0$ are such that the Peirce components $\Hom_{\bX}(\cT_i,\cT_j), \Hom_{\bX}(\cT_{i'},\cT_{j'})$ of $A$ are isomorphic we get a natural element in $\Lambda_r$.
+The moduli stack $\bM_{\textup{ref}}$ of refined representations parametrises families of $A$-modules $\cM$ along with refinement data $g$ so that the pair $(\cM,g)$ is compatible with the isomorphisms of Peirce components of $A$ mentioned above (see Definition~\ref{def:refined}).
+%The monoidal structure we remember here is primarily the kernel $\Lambda_r$ of the homomorphism $\Lambda_{Q_0} \to \Pic \bX$ which sends the $i$-th standard basis vector $\chi_i \in \Lambda_{Q_0}$ to $\cT_i$. Note that if $i,i',j,j' \in Q_0$ are such that $\chi_j - \chi_i - \chi_{j'} + \chi_{i'} \in \Lambda_r$, then the Peirce components $\Hom_{\bX}(\cT_i,\cT_j), \Hom_{\bX}(\cT_{i'},\cT_{j'})$ of $A$ are isomorphic and in our setup we will also need to fix some compatible isomorphisms. Now the stabiliser groups of $\bM$ are naturally subgroups of $\bG_m^{Q_0}/\Delta$ where $\Delta$ is the diagonal copy of $\bG_m$ we removed as a result of rigidification. In fact, there is a natural morphism $\bM \to B(\bG_m^{Q_0}/\Delta) \to B(\Lambda_r)^{\vee}$ where $(\Lambda_r)^{\vee}$ is the dual group of $\Lambda_r$. We reduce the stabiliser groups to subgroups of $\ker ((\bG_m^{Q_0}/\Delta) \to (\Lambda_r)^{\vee})$ by the base change $\textup{pt} \to B(\Lambda_r)^{\vee}$. The resulting fibre product stack $\widetilde{\bM}$ parametrises $A$-modules $\cM$ with some extra refinement data $g$ (see Section~\ref{sec:refined}). The moduli stack $\bM_{\textup{ref}}$ of refined representations is a closed substack of $\widetilde{\bM}$ consisting of pairs $(\cM,g)$ which are compatible with the isomorphisms of Peirce components of $A$ mentioned above (see Definition~\ref{def:refined}).
 
-One advantage the moduli of refined representations has over the tensor stable moduli stack, is that the former is naturally a quotient stack and can be studied via GIT.
-In particular, we expect the open subset $\bM_\text{ref}'$ referred to in Theorem~\ref{thm:samemoduli} to be defined by a GIT stability parameter $\theta$.
-Furthermore, in especially nice settings this GIT construction gives a more direct proof of $\bX \simeq \bM_\text{ref}'$ than the one through the identification with $\bM^{L_1,\ldots,L_s}$.
-These aspects of the stack $\bM_\text{ref}$ are discussed in Section~\ref{sc:GIT} while the special case of G-L projective spaces is addressed in Section~\ref{sec:HIMO}.
+We now paraphrase Corollary~\ref{cor:stackfromCox}.
+\begin{theorem}  \label{thm:3}
+Suppose $\bX$ is a Mori dream stack and that $\cT$ captures the Cox ring of $\bX$ (in the sense of Definition~\ref{def:captureCox}). 
+Then there is an open subset $\bM_{\textup{ref}}^\circ$ of $\bM_{\textup{ref}}$ defined by a GIT stability parameter which is isomorphic to $\bX$.
+\end{theorem}
+The theorem applies in the case of G-L projective spaces and encapsulates when the ad hoc argument in \cite{AU} works. Checking the hypothesis that $\cT$ captures the Cox ring is usually easy for concrete examples, but not necessarily in the abstract. What is striking is how different this approach to stack recovery is to the one using tensor stable moduli stacks. Even the hypotheses for when they work are very different. This raises a host of interesting questions like, is there a relationship between the way the two approaches incorporate the monoidal structure?
 
-We further note here that the theory developed for refined representations of quivers may be developed for endomorphism algebras for any collection of effective line bundles on $\bX$ not just those coming from tilting bundles.
-Analogues of multilinear series introduced by Craw-Smith \cite{Craw-Smith} can be developed in the setting of the projective stacks in question here following on from \cite{Abd} where toric stacks are discussed. 
+We provide an answer when $\cT$ is both a tilting bundle and a direct sum of line bundles. We pick the $L_i$ to correspond to the $\cT_i$. We remark first that the tensor stable moduli stack parametrises $A$-modules $\cM$ enhanced with {\em tensor stability data} which we will denote by $\psi$.
+\begin{theorem}  \label{thm:samemoduli}
+With the above hypotheses, there is an isomorphism of $\bM^{L_1,\ldots,L_s}$ with an open subset of $\bM_{\text{ref}}$ and moreover, the inverse isomorphisms can be defined explicitly by a procedure which tells you how to go back and forth between tensor stability data $\psi$ and refinement data $g$.
+\end{theorem}
+This relates the approaches developed in \cite{AU} and \cite{CL}. There are many reasons why this theorem is interesting. Firstly, it is not clear if the hypotheses of Theorem~\ref{thm:2} imply those of Theorem~\ref{thm:3}, so we now know more instances where refined representations give modular realisations of derived equivalences. Secondly, one advantage the moduli of refined representations has over the tensor stable moduli stack, is that the former is naturally a quotient stack and can be studied via GIT whereas the latter is not obviously so. The relationship between tensor stability and refinement data may suggest a way to apply GIT to tensor stable moduli stacks. Finally, we do expect the open subset $\bM_\text{ref}^\circ$ referred to in Theorem~\ref{thm:samemoduli} to be defined by a GIT stability parameter $\theta$.
+
+We end with some concluding remarks about the modular realisation of derived equivalences problem. The representation theory of a finite dimensional algebra $A$ is extremely subtle as, for example, its complexity varies chaotically as you vary generators and relations for $A$. The beauty of derived equivalences is that they now can be used to explain why some algebras have nice representation theory. Indeed, Geigle-Lenzing formulated their derived equivalence to explain Ringel's study of the representation theory of canonical algebras. The natural question is thus, given $A$, how might you pick a DM stack $\bX$ which is derived equivalent to it. The old approach is to guess $\bX$ (perhaps using knowledge of $K_0(A)$) and a tilting bundle on it. Solutions to the modular realisation problem provide a much more elegant approach, since they are essentially machines for churning out candidates for both $\bX$ and the tilting bundle. There is still some guesswork in the choice of $\vec{d}, L_i$ or $\Lambda_r$ etc. Regardless, the machine will always produce a universal $A$-module, and hence adjoint functors relating $A$ to a moduli stack. Even if these functors are not derived equivalences, they may retain enough information to be useful, as happens in the case of point schemes for Sklyanin algebras.  
+
+\subsubsection*{Notation and conventions}
+We work over an algebraically closed field of characteristic 0.
+For a finite set $S$ we will use $\Lambda_S$ to denote the finite abelian group generated by $S$ and $\chi_s \in \Lambda_S$ to denote the generator corresponding to $s \in S$.
 
 
 \section{Background: quasi-projective stacks}
@@ -184,7 +169,7 @@ The authors of \cite{HIMO} chose to name them Geigle-Lenzing projective spaces i
 
 In this section, we introduce the notion of a skyscraper sheaves on a quasi-projective stack $\bX$ and their moduli. By definition, the coarse moduli space $X$ is a quasi-projective scheme and there exists a generating sheaf $\cG$ which is far from being unique. Let $c \colon \bX \rightarrow X$ be the canonical morphism to the coarse moduli scheme and suppose there is a fixed decomposition $\cG = \oplus_i \cG_i$. Let $\cA := c_* \cEnd_{\bX} \cG$ which is a finite sheaf of algebras on $X$.
 
-Let $\tilde{\bM}_{\Coh}$ be the moduli stack of coherent sheaves on $\bX$. Recall that $\Coh(\bX)$ is a $k$-linear category, so the inertia groups of every object contain a copy of $\mathbb{G}_m$. We remove this common copy of $\mathbb{G}_m$ by {\em rigidification} as defined for example in \cite[Section~5]{ACV} (see also \cite[Section~2.3]{CL} for a gentle description). Let $\bM_{\Coh}$ denote the resulting rigidified moduli stack of coherent sheaves on $\bX$. It can be described as the stackification of the following pre-stack $\bM^{pre}$. Given a test scheme $T$, the objects of $\bM^{pre}(T)$ are those of $\tilde{\bM}(T)$. Given objects $\cM, \cN \in \bM^{pre}(T)$, the isomorphisms from $\cM$ to $\cN$ consist of equivalence classes of isomorphisms $\theta \colon \cM \to \cM' \otimes_T \cN$ where $\cN$ is a line bundle on $T$ and $\theta' \colon \cM \to \cM' \otimes_T \cN'$ is {\em equivalent} to $\theta$ if there is some isomorphism $l \colon \cN \to \cN'$ with $\theta' = (\id \otimes l) \theta$. The pullback pseudo-functor is that induced from $\tilde{\bM}_{\Coh}$. 
+Let $\widetilde{\bM}_{\Coh}$ be the moduli stack of coherent sheaves on $\bX$. Recall that $\Coh(\bX)$ is a $k$-linear category, so the inertia groups of every object contain a copy of $\mathbb{G}_m$. We remove this common copy of $\mathbb{G}_m$ by {\em rigidification} as defined for example in \cite[Section~5]{ACV} (see also \cite[Section~2.3]{CL} for a gentle description). Let $\bM_{\Coh}$ denote the resulting rigidified moduli stack of coherent sheaves on $\bX$. It can be described as the stackification of the following pre-stack $\bM^{pre}$. Given a test scheme $T$, the objects of $\bM^{pre}(T)$ are those of $\tilde{\bM}(T)$. Given objects $\cM, \cN \in \bM^{pre}(T)$, the isomorphisms from $\cM$ to $\cN$ consist of equivalence classes of isomorphisms $\theta \colon \cM \to \cM' \otimes_T \cN$ where $\cN$ is a line bundle on $T$ and $\theta' \colon \cM \to \cM' \otimes_T \cN'$ is {\em equivalent} to $\theta$ if there is some isomorphism $l \colon \cN \to \cN'$ with $\theta' = (\id \otimes l) \theta$. The pullback pseudo-functor is that induced from $\widetilde{\bM}_{\Coh}$. 
 
 We will always rigidify our moduli stacks in this way so in general will omit the adjective ``rigidified''. We next define the (rigidified) moduli stack $\bM_{\textup{Fin}}$ of finite length sheaves on $\bX$. The objects over a test scheme $T$ consist of coherent sheaves $\cF \in \Qcoh(\bX \times T)$ which are flat over $T$ and such that the support $Z \subseteq X \times T$ of $\Phi_{\cG}(\cF):=(c\times \id_T)_*\cHom_{\bX}(\cG, \cF)$ is finite over $T$. Since flatness is a property of a Grothendieck category (see \cite{AZ01}), this is equivalent by Proposition~\ref{prop:Morita}, to a flat family of coherent $\cA$-modules with finite support. The morphisms in $\bM_{\textup{Fin}}$ are defined to be the same as for the moduli stack of coherent sheaves on $\bX$. We note that the definition is independent of the choice of generator, since Morita equivalences of finite sheaves of algebras over $X$ preserve support on $X$.
 
@@ -245,7 +230,7 @@ G \times U @>>> \bX \\
 U \times U @>{\pi \times \pi}>> \bX \times \bX 
 \end{CD}.$$
 Here $\delta = (\alpha, pr_2)$ where $\alpha \colon G \times U \to U$ is the action and $pr_2$ is the projection map. Thus $\Delta_*\cO_{\bX}$ when pulled 
-back to a family on $U$ is given by the $G$-equivariant sheaf $\delta_* \cO_{G \times U}$. It is useful to view this as the skew group ring $G \# \cO_U$ where left multiplication by $G$ and $\cO_U$ give the structure of a $G$-equivariant sheaf, and right multiplication by $\cO_{U}$ determines the geometry of the family.  Note that the support of $G \# \cO_U$ as a sheaf on $U \times U$ is $Z = \cup_{g \in G} (g,\id)(U)$ which is finite over $U$. Also, if we pick a geometric point $\Spec K$ of the base $U$, then the corresponding $G$-equivariant sheaf is $G \# \cO_U \otimes_U K \simeq G \# K$, the regular representation of $G$ over $K$.
+back to a family on $U$ is given by the $G$-equivariant sheaf $\delta_* \cO_{G \times U}$. It is useful to view this as the skew group ring $G \# \cO_U$ where left multiplication by $G$ and $\cO_U$ give the structure of a $G$-equivariant sheaf, and right multiplication by $\cO_{U}$ determines the geometry of the family.  Note that the support of $G \# \cO_U$ as a sheaf on $U \times U$ is $Z = \cup_{g \in G} (g,\id)(U)$ which is finite over $U$. Also, if we pick a geometric point $\Spec k$ of the base $U$, then the corresponding $G$-equivariant sheaf is $G \# \cO_U \otimes_U k \simeq G \# k$, the regular representation of $G$ over $k$.
 In other words, $\Delta_* \cO_\bX$ is analogous to the universal family on the corresponding $G$-Hilbert scheme.
 
 
@@ -367,15 +352,15 @@ This completes the definition of $\Phi(\cS, \theta_1,\theta_2)$. It is now eleme
 
 In this section, we study equaliser stacks in the setting of representations of a finite dimensional algebra $A$. When $A$ is the endomorphism algebra of a tilting bundle $\cT$ on a separated smooth projective stack $\bX$, we exhibit $\bX$ as various equaliser stacks on the moduli of $A$-modules. The basic idea is to use tilting theory to construct a correspondence between moduli problems in $\Qcoh(\bX)$ with those in $\textup{mod}-A$.
 
-We assume throughout that $A$ has finite global dimension. Fix a {\em dimension vector} $\vec{d} \in K_0(A)$. If we present $A$ as a quiver with relations so that $A \simeq kQ/I$ for some quiver $Q = (Q_0,Q_1)$ and some admissible ideal $I\triangleleft kQ$, then $\vec{d}$ can be viewed as an element of $\bZ^{Q_0}$. Let $\bM_{\vec{d}}$ denote the {\em rigidified moduli stack of $A$-modules with dimension vector $\vec{d}$}. It is an Artin stack of finite type an elementary description of which can be found in \cite[Section~2]{CL}.
+We assume throughout that $A$ has finite global dimension. Fix a {\em dimension vector} $\vec{d} \in K_0(A)$. If we present $A$ as a quiver with relations so that $A \simeq kQ/I$ for some quiver $Q = (Q_0,Q_1)$ and some admissible ideal $I\triangleleft kQ$, then $\vec{d}$ can be viewed as an element of $\Lambda_{Q_0}$. Let $\bM_{\vec{d}}$ denote the {\em rigidified moduli stack of $A$-modules with dimension vector $\vec{d}$}. It is an Artin stack of finite type an elementary description of which can be found in \cite[Section~2]{CL}.
 
 Let $L_1,\ldots, L_s$ be two-sided tilting complexes on $A$, that is, they induce auto-equivalences 
 $$- \otimes^L_A L_i \colon D^b_{fg}(A) \xrightarrow{\sim} D^b_{fg}(A)$$
-where $D^b_{fg}(A)$ denotes the bounded derived category of finitely generated $A$-modules. This functor induces a partially defined map $\lambda_i \colon \bM_{\vec{d}} \dashto \bM_{\vec{d}}$ as follows. Let $\cM$ be a flat family of $A$-modules over a test scheme $T$ with dimension vector $\vec{d}$. By \cite[Proposition~3.3]{CL} (the proof given there for $L_i = DA$ works more generally in this setting), there is a locally closed subscheme $T' \subseteq T$ which is the locus where a) $H_p(\cM \otimes^L_A L_i) = 0$ for $p\neq 0$ and b), $H_0(\cM \otimes^L_A L_i)$ is flat over $T'$ with dimension vector $\vec{d}$. Furthermore, by \cite[Lemma~3.2]{CL}, we have
-$$ H_p(\cM|_{T'} \otimes^L_A L_i) \simeq H_p(\cM \otimes^L_A L_i)|_{T'} .$$
-As one varies $\cM$ and $T$, the locally closed subscheme $T'$ determines a locally closed substack $\bM_{\vec{d}}' \subseteq \bM_{\vec{d}}$. We conclude
+where $D^b_{fg}(A)$ denotes the bounded derived category of finitely generated $A$-modules. This functor induces a partially defined map $\lambda_i \colon \bM_{\vec{d}} \dashto \bM_{\vec{d}}$ as follows. Let $\cM$ be a flat family of $A$-modules over a test scheme $T$ with dimension vector $\vec{d}$. By \cite[Proposition~3.3]{CL} (the proof given there for $L_i = DA$ works more generally in this setting), there is a locally closed subscheme $T^\circ \subseteq T$ which is the locus where a) $H_p(\cM \otimes^L_A L_i) = 0$ for $p\neq 0$ and b), $H_0(\cM \otimes^L_A L_i)$ is flat over $T^\circ$ with dimension vector $\vec{d}$. Furthermore, by \cite[Lemma~3.2]{CL}, we have
+$$ H_p(\cM|_{T^\circ} \otimes^L_A L_i) \simeq H_p(\cM \otimes^L_A L_i)|_{T^\circ} .$$
+As one varies $\cM$ and $T$, the locally closed subscheme $T^\circ$ determines a locally closed substack $\bM_{\vec{d}}^\circ \subseteq \bM_{\vec{d}}$. We conclude
 \begin{proposition}  \label{prop:lambdamap}
-The functor $- \otimes_A L_i \colon \textup{mod}-A \to \textup{mod}-A$ induces a partially defined map $\lambda_i \colon \bM_{\vec{d}} \dashto \bM_{\vec{d}}$ with domain of definition $\bM_{\vec{d}}'$ in the notation above. We let $\bM_{\vec{d}}^{L_1,\ldots,L_s}$ denote the fixed point stack of these partially defined maps and call it the {\em tensor stable moduli stack} of $A$-modules with dimension vector $\vec{d}$ with respect to $L_1,\ldots, L_s$. 
+The functor $- \otimes_A L_i \colon \textup{mod}-A \to \textup{mod}-A$ induces a partially defined map $\lambda_i \colon \bM_{\vec{d}} \dashto \bM_{\vec{d}}$ with domain of definition $\bM_{\vec{d}}^\circ$ in the notation above. We let $\bM_{\vec{d}}^{L_1,\ldots,L_s}$ denote the fixed point stack of these partially defined maps and call it the {\em tensor stable moduli stack} of $A$-modules with dimension vector $\vec{d}$ with respect to $L_1,\ldots, L_s$. 
 \end{proposition}
 
 The algebras of interest are those arising from tilting theory. We thus suppose that $\bX$ is a separated smooth projective stack with a tilting bundle $\cT$ which we decompose into indecomposables $\cT = \oplus_{i \in Q_0} \cT_i$. The finite dimensional algebra $A = \End_{\bX}{\cT}$ has finite global dimension and has the form $A \simeq kQ/I$ where the vertex set of the quiver $Q$ is $Q_0$. We view $\cT$ as an $(A,\cO_{\bX})$-bimodule. 
@@ -384,7 +369,7 @@ The tilting bundle $\cT$ is a generating sheaf for $\bX$.
 \end{proposition}
 \begin{proof}
 Fix a geometric point $x \in \bX$. 
-The stack $[\text{pt}/\Aut(x)]$ which may be presented using the Cartesian square 
+The stack $[\text{pt}/\Aut(x)]$ may be presented using the Cartesian square 
 \begin{equation*}
 \begin{CD}
 [\text{pt}/\Aut(x)] @>x>> \bX\\
@@ -402,7 +387,7 @@ However this can not be true since that would imply $x^* \, x_* \cV = 0$ and hen
 \end{proof}
 Let $\Phi = \RHom_{\bX}(\cT,-) \colon D^b_{c}(\bX) \to D^b_{fg}(A)$ denote the derived equivalence induced by $\cT$. 
 
-Given line bundles $\cL_1,\ldots, \cL_s \in \Pic \bX$, we may thus consider the tensor stable moduli stack $\bM_{\cT}^{\cL_{\bullet}} := \bM_{\cT-Sky}^{\cL_1,\ldots,\cL_s}$. We now introduce the corresponding moduli stack on $\textup{mod}-A$ as follows. Firstly, we let $\vec{d}\in \bZ^{Q_0} = K_0(A)$ be defined by $d_i = \rank \cT_i$ so that for any skyscraper sheaf $\cS$ on $\bX$ relative to $\cT$, we have $\Phi(\cS)$ is an $A$-module with dimension vector $\vec{d}$. Consider the auto-equivalences
+Given line bundles $\cL_1,\ldots, \cL_s \in \Pic \bX$, we may thus consider the tensor stable moduli stack $\bM_{\cT}^{\cL_{\bullet}} := \bM_{\cT-Sky}^{\cL_1,\ldots,\cL_s}$. We now introduce the corresponding moduli stack on $\textup{mod}-A$ as follows. Firstly, we let $\vec{d}\in \Lambda_{Q_0} = K_0(A)$ be defined by $d_i = \rank \cT_i$ so that for any skyscraper sheaf $\cS$ on $\bX$ relative to $\cT$, we have $\Phi(\cS)$ is an $A$-module with dimension vector $\vec{d}$. Consider the auto-equivalences
 $$ \Phi \circ (\cL_i \otimes^L_{\bX} -) \circ \Phi^{-1} \colon D^b_{fg}(A) \to D^b_{fg}(A)$$
 which by Rickard \cite{MR1002456} are naturally isomorphic to $- \otimes^L_A L_i$ for some two-sided tilting complexes $L_i$. We thus also have another tensor stable moduli stack $\bM_{\vec{d}}^{L_{\bullet}} := \bM_{\vec{d}}^{L_1,\ldots,L_s}$. 
 
@@ -437,7 +422,9 @@ $\oplus \cN^{\otimes n \vec{i}} \otimes_T \cM$ which is flat over $T$. It follow
 \section{Refined representation and their moduli}\label{sec:refined}
 
 We introduce a slightly different approach for recovering our stack $\bX$ from a tilting bundle.
-Here the focus will be on `fixing' the mismatch of monoidal structures between $\bX$ and $\bM$; after all \cite{Lurie} suggests that the tensor product holds the key to stack recovery.
+Here we will assume our tilting bundles $\cT$ may be decomposed into a direct sum of line bundles $\cT_i$ and take $A := \End(\cT)$.
+The letter $\bM$ will denote the rigidified moduli stack of $A$ modules of dimension vectors $\vec{1}$.
+We will also write $\bM^{\Pic}:= \bM_{\vec{1}}^{\cT_\bullet}$.
 
 The stack $\bM$ comes with a universal bundle $\cU  = \oplus_{i \in Q_0} \cU_i$.
 Since the moduli stack $\bM$ is rigidified to remove the common $\bG_m$-stabiliser, $\cU$ is only uniquely defined up to twist by some line bundle on $\bM$.
@@ -445,51 +432,75 @@ The titling bundle $\cT^{\vee}$ gives a tautological family of quiver representa
 We will assume that one of the $\cT_0$ is $\cO_{\bX}$ for some $0 \in Q_0$ and further arrange matters so $\cU_0 = \cN = \cO_{\bM}$, hence $\cU$ and $f^*$ are well-defined.
 
 The universal line bundles of $\bM$ generate a free abelian subgroup of $\Pic(\bM)$ of rank $|Q_0|-1$.
-This may be checked by restricting to the `point' of $\bM$ corresponding to the semisimple module $\cM$ of dimension vector $\vecd$.
-Given our assumption that $\cU_0 = \cO_{\bM}$, we may identify this group with a, the suggestively denoted, subgroup $\textup{Wt}(Q):= \Lambda_{Q_0 \setminus \{0\}} \subset \Lambda_{Q_0}$ generated by all the $\cU_i$ but $\cU_0$.
-The homomorphism on $f^* \colon \Lambda_{Q_0} \rightarrow \Pic(\bX)$ is, in general, not an isomorphism even when restricted to $\textup{Wt}(Q)$; in general there exists pair of bundles $\cU_\alpha, \cU_\beta \in \textup{Wt}(Q)$ such that $\cU_\alpha \not\simeq \cU_\beta$ but for their respective pull-backs $\cT_\alpha \simeq \cT_\beta$.
+This may be checked by restricting to the ``point'' of $\bM$ corresponding to the semisimple module $\cM$ of dimension vector $\vecd$.
+Given our assumption that $\cU_0 = \cO_{\bM}$, we may identify this subgroup of $\Pic(\bM)$ with the free abelian group $\Lambda_{Q_0 \setminus \{0\}}$ by taking the universal bundle $\cU_i$ to the generator $\chi_i$ for $0 \neq i \in Q_0$.
+To simplify notation we write $\Lambda_Q:= \Lambda_{Q_0 \setminus \{0\}}$.
+Furthermore, given $\chi \in \Lambda_Q$ we use $\cU_\chi$ to denote its corresponding line bundle and move fluidly between the interpretation of $\Lambda_Q$ as the free group in ${Q_0 \setminus \{0\}}$ and as a subgroup of $\Pic(\bM)$.
+
+The homomorphism on $f^* \colon \Lambda_Q \rightarrow \Pic(\bX)$ taking $\cU_i$ to $\cT_i^\vee$ is, in general, not an isomorphism; in general there exists pair of bundles $\cU_\alpha, \cU_\beta \in \Lambda_Q$ such that $\cU_\alpha \not\simeq \cU_\beta$ but for their respective pull-backs $\cT_\alpha \simeq \cT_\beta$.
 The aim here is to tweak $\bM$ and the objects it parametrises so that the pullback homomorphism $f^*$ ends up being an isomorphism.
-Naturally the kernel of the group homomorphism $f^*$ will play an important role in what follows we will use $\Lambda_r \subset \Lambda_{Q_0}$ to denote it.
+Naturally the kernel of the group homomorphism $f^*$ will play an important role in what follows we will use $\Lambda_r \subset \Lambda_{Q}$ to denote it.
 
 \subsection{Definition of refined representations}
-The first step in our construction is a natural $\Lambda_r^\vee$ cover $\tilde{\bM}$ of $\bM$ as was introduced in \cite{Abd}.
-The universal bundle $\cU$ give us a natural morphism $\bM \rightarrow B\Lambda_{Q_0}^\vee$.
-The subgroup $\Lambda_r \subset \Wt(Q) \subset \Lambda_{Q_0}$ in turn gives a morphisms $B\Lambda_{Q_0}^\vee \rightarrow B\Lambda_r^\vee$.
+To reduce the inertia groups of $\bM$, a natural $\Lambda_r^{\vee}$-cover $\widetilde{\bM}$ of $\bM$ was introduced in \cite[Definition~3.2]{Abd}.
+Here we give a more geometric definition of this cover. 
+The universal bundle $\cU$ give us a natural morphism $\bM \rightarrow B\Lambda_Q^\vee$.
+The subgroup $\Lambda_r \subset \Lambda_{Q}$ in turn gives a morphisms $B\Lambda_{Q}^\vee \rightarrow B\Lambda_r^\vee$.
 The composite gives $\bM \rightarrow B\Lambda_r^\vee$.
-We define $\tilde{\bM}$ by the following 2-Cartesian square.
+We define $\widetilde{\bM}$ by the following 2-Cartesian square.
 \begin{equation*}
 \begin{CD}
-\tilde{\bM} @>>> \bM \\
+\widetilde{\bM} @>>> \bM \\
 @VVV @VVhV \\
 \text{pt} @>>> B\Lambda_r^{\vee} = [\text{pt}/\Lambda_r^{\vee}].
 \end{CD}
 \end{equation*}
+By the standard construction of the fibre product of stacks, we see that an object of $\widetilde{\bM}(S)$ corresponds to a representation $(\cM_i,m_a)$ and a collection of isomorphisms $g(\kappa) \colon \cO_S \xrightarrow{\sim} \cU_{\kappa}, \kappa \in \Lambda_r$ such that $g(\kappa + \kappa') = g(\kappa) \otimes g(\kappa')$.
+There are natural morphisms $\bX \rightarrow \text{pt}$ and $f \colon \bX \rightarrow \bM$ but to use the universal property of fibre products we further need to give 2-isomorphism between the two composites from $\bX$ to $B\Lambda_r^{\vee}$.
+Given a choice of basis $B_r$ of $\Lambda_r$, this is a choice of $\gamma_{\kappa} \colon \cO \xto{\sim} \cT_{\kappa}^\vee$ for each $\kappa \in B_r$.
+Such $\gamma_k$'s exist since $\Lambda_r$ is the kernel of $f^*$.
+For now pick such isomorphisms; we will later further discuss this ambiguity.
 
-We wish now to construct a near section of the $\Lambda_r^{\vee}$-cover $\tilde{\bM} \rightarrow \bM$.
-First we pick a basis $B_r$ of $\Lambda_r$ and a choice of isomorphism $\gamma_{\kappa} \colon \cO \xto{\sim} \cT_{\kappa}^\vee$ for each $\kappa \in B_r$.
-Let $\bfe_i \in A$ be the idempotent corresponding the the vertex $i$. 
-Recall that the vector space $\bfe_i A \bfe_j$ is generated by paths from a vertex $i$ to another $j$ and is isomorphic to the space of sections $\Hom_\bX (\cT_i^\vee, \cT_j^\vee)$. 
-Therefore given two pairs of line bundles $(\cT_i, \cT_j)$ and $(\cT_k, \cT_l)$ for which $\cHom_\bX(\cT^\vee_i, \cT_j^\vee) \cong \cHom_\bX(\cT_k^\vee, \cT_l^\vee)$ our choice of $\gamma$ induces a natural isomorphism $\gamma \colon \bfe_i A \bfe_j \xrightarrow{\sim} \bfe_k A \bfe_l$.
+We wish now to construct a near section of the $\Lambda_r^{\vee}$-cover $\widetilde{\bM} \rightarrow \bM$.
+Let $\bfe_i \in A$ be the idempotent corresponding to the vertex $i$. 
+Recall that the vector space $\bfe_i A \bfe_j$ is generated by paths from a vertex $i$ to another $j$ and is isomorphic to the space of sections $\Hom_\bX (\cT_j, \cT_i)$. 
+Therefore given two pairs of line bundles $(\cT_i, \cT_j)$ and $(\cT_k, \cT_l)$ for which $\cHom_\bX(\cT_j, \cT_i) \cong \cHom_\bX(\cT_l, \cT_k)$ our choice of $\gamma$ induces a natural isomorphism $\gamma \colon \bfe_i A \bfe_j \xrightarrow{\sim} \bfe_k A \bfe_l$.
 Below, we view $A$-modules $\cM$ as quiver representations $(\cM_i,m_a)$ where the indices range over $i \in Q_0, a \in Q_1$. 
 
 \begin{definition} \label{def:refined}
-A {\em flat family of refined representations} $\cM$ of $A$ over $S$ of dimension vector $\vec{d}$ consists of a representation $(\cM_i, m_a, g) \in \tilde{\bM}(S)$ such that $g$ satisfies the following condition: for any two pairs of vertices $(i,j)$ and $(k,l)$ for which $\chi:= (\chi_i + \chi_l)-(\chi_j + \chi_k) \in \Lambda_r$ and path $a \colon i \rightarrow j$, the following diagram commutes
+A {\em flat family of refined representations} $\cM$ of $A$ over $S$ of dimension vector $\vec{1}$ consists of a representation $(\cM_i, m_a, g) \in \widetilde{\bM}(S)$ such that $g$ satisfies the following condition: for any two pairs of vertices $(i,j)$ and $(k,l)$ for which $\kappa:= (\chi_i + \chi_l)-(\chi_j + \chi_k) \in \Lambda_r$ and path $a \colon i \rightarrow j$, the following diagram commutes
 \begin{equation}  \label{eq:refined}
 \begin{CD}
 \cM_i \otimes \cM_k @>m_a \otimes \text{id}>> \cM_j \otimes \cM_k\\
-@VV\text{id}V @VVg(\chi)V\\
+@VV\text{id}V @VVg(\kappa)V\\
 \cM_i \otimes \cM_k @>\text{id} \otimes m_{\gamma(a)}>> \cM_i \otimes \cM_l.
 \end{CD}
 \end{equation}
 We let $\bM_{\text{ref}}$ denote the resulting {\em moduli stack of refined representations of $A$}. We refer to $g$ as {\em refinement data}.
 \end{definition}
 
-Our choice of isomorphisms $\gamma_\kappa$ for every $\kappa \in B_r$ gives a family of refined representations over $\bX$ and so a morphism $\bX \rightarrow \bM_\text{ref}$.
-The change of basis matrix between any two such choices give a 2-isomorphism between the associated morphisms $\bX \rightarrow \bM_\text{ref}$.
-
 \begin{remark}
 This definition of refined representations is slightly different from that given in \cite[Definition 3.2]{Abd} where the commutative diagram condition is omitted.
 \end{remark}
+
+The choice of isomorphisms $\gamma_\kappa$ for every $\kappa \in B_r$ gives a family of refined representations $(\cT_i^\vee, t_a, \gamma_\kappa)$ over $\bX$ and so a morphism $\bX \rightarrow \bM_\text{ref}$.
+Any two such choices give 2-isomorphisms between the associated morphisms $\bX \rightarrow \bM_\text{ref}$.
+
+One way to select the isomorphisms $\gamma_k$ is through picking a quasi-inverse of the triangulated equivalence that is the inclusion $K^b(\cT_i) \rightarrow D^b(\bX)$, here $K^b(\cT_i)$ is the homotopy category of complexes whose components are direct sums of line bundles $\cT_i^\vee$.
+Given $\chi \in \Lambda_{Q}$, the image of the line bundle $\cT_\chi^\vee:= f^* \cU_\chi$ under this functor $D^b(\bX) \rightarrow K^b(\cT_i)$ is by definition a complex whose components are direct sums of line bundles of the form $\cT_i^\vee$.
+For $\kappa \in \Lambda_r$ the following lemma gives us an isomorphism from $\cO_\bX$ to $\cT_\kappa^\vee$.
+
+\begin{lemma}\label{lm:kappa0}
+A quasi-inverse $D^b(\bX) \rightarrow K^b(\cT_i)$ of the natural inclusion $K^b(\cT_i) \rightarrow D^b(\bX)$ induces an isomorphism $\gamma_k\colon \cO_\bX \xto{\sim}\cT_\kappa^\vee$ for every  $\kappa \in \Lambda_r$.
+\end{lemma}
+
+\begin{proof}
+The class of $\cT_\kappa^\vee$ in the Grothendieck group of $\bX$ is equal to that of $\cO_\bX$ since they are isomorphic.
+Therefore the determinant of the projective resolution of $\cT_\kappa^\vee$ must be equal to $\cO_\bX$. 
+Otherwise it would give a non-trivial relation in the Grothendieck group of $\bX$ which is freely generated by the classes of $\cT_i^\vee$ for $i\in Q_0$.
+\end{proof}
+
+We pick such a quasi-inverse $D^b(\bX) \rightarrow K^b(\cT_i)$ once and for all.
 
 \subsection{Monoidal interpretation of refinement data}
 There are several monoidal categories of interest here. 
@@ -504,9 +515,9 @@ In particular, it streamlines checking that $\underline{\Lambda}/\Lambda'$ is a 
 When $\Lambda' = 0$ we write $\underline{\Lambda} = \underline{\Lambda}/\Lambda'$.
 The category $\underline{\Lambda}/\Lambda'$ is monoidally equivalent to $\underline{\Lambda/\Lambda'}$.
 
-A family of representations $(\cM_i,  m_a)$ of $A$ over a test scheme $S$ gives a monoidal functor $\underline{\Lambda}_{Q_0} \rightarrow \Vect_1(S)$ taking the generators to their corresponding bundles $\cM_i$.
-The refinement data $g$ is equivalent to giving a lift of this functor to $\underline{\Lambda}_{Q_0}/\Lambda_r$ resulting in a functor $\underline{\Lambda}_{Q_0}/\Lambda_r \rightarrow \Vect_1(S)$.
-Our choice of $\gamma(\kappa)$ for every $\kappa \in B_r$ (and by extension $\kappa \in \Lambda_r$) is precisely a lift of the functor $\underline{\Lambda}_{Q_0} \rightarrow \Vect_1(\bX)$ taking $\chi_i \mapsto \cT_i^\vee$ to a functor $\underline{\Lambda}_{Q_0}/\Lambda_r \rightarrow \Vect_1(\bX)$.
+A family of representations $(\cM_i,  m_a)$ of $A$ over a test scheme $S$ gives a monoidal functor $\cM_? \colon\underline{\Lambda}_{Q} \rightarrow \Vect_1(S)$ taking the object corresponding to $\sum_{i \in Q_0} a_i \chi_i$ to $\otimes_{i \in Q_0} \cM_i^{a_i}$.
+The refinement data $g$ is equivalent to giving a lift of this functor to $\underline{\Lambda}_{Q}/\Lambda_r$ resulting in a functor $\underline{\Lambda}_{Q}/\Lambda_r \rightarrow \Vect_1(S)$.
+A choice of $\gamma_\kappa$ for every $\kappa \in B_r$ (and by extension $\kappa \in \Lambda_r$) is precisely a choice of a lift of the functor $\underline{\Lambda}_{Q} \rightarrow \Vect_1(\bX)$ taking $\chi_i \mapsto \cT_i^\vee$ to a functor $\underline{\Lambda}_{Q}/\Lambda_r \rightarrow \Vect_1(\bX)$.
 
 \subsection{From Picard stable to refined representations}
 Now we address how a point in the Picard stable moduli space $\bM^{\Pic}$ naturally induces refined data on the corresponding representation $\bM$.
@@ -515,11 +526,12 @@ We seek a morphism $h \colon \bM^{\Pic} \to \bM_{\text{ref}}$ assigning refineme
 Consider a flat family of $A$-modules $\cM \in \bM^{\Pic}(S)$ over a test scheme $S$.
 The tensor stability data consists of compatible isomorphisms 
 $$\psi_i \colon \cM \otimes_A^L L_i \xto{\sim} \cN_i \otimes_S \cM$$
-where $\cN_i$ are line bundles on $S$. 
+where $\cN_i$ are line bundles on $S$.
+The assignment $\chi_i$ to $\cN_i$ extends to a monoidal functor $\cN_? \colon \Lambda_Q \rightarrow \Vect_1(S)$ by Proposition \ref{prop:doublestable}.
 The isomorphisms $\psi_i$ are only defined up to scalar and we will need to show at the end, that our definition of $h(\cM,\psi_i)$ is independent of this ambiguity.
 
-There are a several functors from $\underline{\Lambda}_{Q_0}$ to $\Vect(S)$ that are in play here: there are $\cM_?$ and $\cN_?$, which were defined above, and then $L_?$ and $\cM_?^{\text{can}}$ which we will define below.
-The functors $\cM_?$ and $\cN_?$ are monoidal while $L_?$ and $\cM_?^{\text{can}}$ turn out not to be monoidal.
+There are a several functors from $\underline{\Lambda}_{Q}$ to $\Vect(S)$ that are in play here: there are $\cM_?$ and $\cN_?$, which were defined above, and then $(\cM \otimes_A^L L_?)_0$ and $\cM_?^{\text{can}}$ which we will define below.
+The functors $\cM_?$ and $\cN_?$ are monoidal while $(\cM \otimes_A^L L_?)_0$ and $\cM_?^{\text{can}}$ turn out not to be monoidal.
 The refinement data corresponding to $\psi_i$ will be derived by relating these functors to each other.
 
 \begin{lemma}\label{lm:equivNM}
@@ -534,15 +546,15 @@ $$\cM_i = (\cM \otimes_A^L L_i)_0 \xto{\psi_{i,0}} \cN_i \otimes_S \cM_0 = \cN_i
 Tensoring over $S$ induces the required isomorphisms $\xi_\chi \colon \cM_\chi \xto{\sim} \cN_\chi$.
 \end{proof}
 
-The other two functors of interest $L_?$ and $\cM_?^{\text{can}}$ are given as follows.
-The functor $L_?$ takes the value  $(\cM \otimes_A^L L_\chi)_0$ for $0 \in Q_0$ our special vertex and $\chi \in \Lambda_{Q_0}$ a general element.
-For $\cM_?^{\text{can}}$, let $K^b(P_i)$ be the homotopy category of complexes whose components are direct sums of the projectives $P_i := \bfe_iA$, we begin by picking a quasi-inverse of the triangulated equivalence given by the natural inclusion $K^b(P_i) \rightarrow D^b(A)$.
-Given $\chi \in \Lambda_{Q_0}$, the image of the module $L_\chi$ under this functor $D^b(A) \rightarrow K^b(P_i)$ is by definition a complex whose components are direct sums of projectives of the form $\bfe_iA$.
+The other two functors of interest $(\cM \otimes_A^L L_?)_0$ and $\cM_?^{\text{can}}$ are given as follows.
+The functor $(\cM \otimes_A^L L_?)_0$ takes the value  $(\cM \otimes_A^L L_\chi)_0$ for $0 \in Q_0$ our special vertex and $\chi \in \Lambda_Q$ a general element.
+For $\cM_?^{\text{can}}$, let $K^b(P_i)$ be the homotopy category of complexes whose components are direct sums of the projectives $P_i := A\bfe_i$. Since the derived equivalence $D^b(A) \rightarrow D^b(\bX)$ takes $P_i$ to $\cT_i$, our choice of quasi-inverse $D^b(\bX) \rightarrow K^b(\cT_i)$ induces an equivalence $D^b(A) \rightarrow K^b(P_i)$. 
+The image of the module $L_\chi$ under this functor $D^b(A) \rightarrow K^b(P_i)$ is by definition a complex whose components are direct sums of projectives of the form $P_i$.
 We then have an expression of $(\cM \otimes_A^L L_\chi)_0$ as a complex whose components are direct sums of $\cM_i$.
 Take $\cM_?^{\text{can}}$ to be the determinant of this complex of $S$-bundles.
 
 \begin{lemma}\label{lm:Mcan}
-The functors $(\cM \otimes_A^L L_\chi)_0$ and $\cM_?^{\textup{can}}$ are canonically isomorphic.
+The functors $(\cM \otimes_A^L L_?)_0$ and $\cM_?^{\textup{can}}$ are canonically isomorphic.
 \end{lemma}
 
 \begin{proof}
@@ -550,14 +562,16 @@ The complex $(\cM \otimes_A^L L_\chi)_0$ is a complex of bundles whose cohomolog
 There is a canonical isomorphism from this to its determinant $\cM_?^{\text{can}}$.
 \end{proof}
 
-For $i \in Q_0$, $\cM_i= \cM_i^\text{can}$ but this is not true for general $\chi \in \Lambda_{Q_0}$ i.e.\ in general, $\cM_\chi \neq \cM_\chi^\text{can}$.
+For $i \in Q_0$, $\cM_i= \cM_i^\text{can}$ but this is not true for general $\chi \in \Lambda_Q$ i.e.\ in general, $\cM_\chi \neq \cM_\chi^\text{can}$.
 Stability data is designed to `fix' this discrepancy.
 
 \begin{example}
-Take the weighted projective line $\bX:=\bP(1,2)$ and $\cT= \oplus_{i=0}^2 \,\cO(i)$.
+Take the weighted projective line $\bX:=\bP(1,2)$. 
+The stack $\bX$ is the stacky Proj of the $\bZ$-graded ring $k[y_1,y_2]$ where $\deg(y_i)=i$.
+The bundle $\cT= \oplus_{i=0}^2 \,\cO(\vecy_i)$ is a tilting bundle.
 Let $(\cU_i, u_a)$ be the universal family on moduli space of quiver representations $\bM$.
-For $i=1$, we have $(\cU \otimes_A^L \cO(1))_0 = \cU_1$.
-For $\chi= 2\,\chi_1$, $$\cU_\chi^\text{can} = (\cU \otimes_A^L (\cO(1)\otimes_\bX \cO(1)))_0 = (\cU \otimes_A^L (\cO(2))_0 = \cU_2.$$
+We have $(\cU \otimes_A^L \cO(\vecy_i))_0 = \cU_i$.
+For $\chi= 2\,\chi_1$, $$\cU_\chi^\text{can} = (\cU \otimes_A^L (\cO(\vecy_1)\otimes_\bX \cO(\vecy_1)))_0 = (\cU \otimes_A^L (\cO(\vecy_2))_0 = \cU_2.$$
 On the other hand, $\cU_\chi = \cU_1 \otimes_\bM \cU_1$ and $\cU_2 \not\simeq \cU_1 \otimes_\bM \cU_1$ on $\bM$.
 \end{example}
 
@@ -566,130 +580,137 @@ Stability data gives an isomorphism of functors between $\cM_?$ and $\cM_?^{\tex
 \end{proposition}
 
 \begin{proof}
-This is essentially a translation of Proposition~\ref{prop:doublestable}.
-
-For $\chi \in \Lambda_{Q_0}$ Lemmas~\ref{lm:equivNM} and \ref{lm:Mcan} give us
+For $\chi \in \Lambda_{Q}$ Lemmas~\ref{lm:equivNM} and \ref{lm:Mcan} give us
 \begin{equation}\label{eq:phitog}
-\cM_\chi^\text{can} \xto{\sim} (\cM \otimes_A^L L_\chi)_0 \xto{\psi_{\chi,0}} \cN_\chi \otimes_S \cM_0 = \cN_i \xto{{\xi_\chi^{-1}}} \cM_\chi.
+\cM_\chi^\text{can} \xto{\sim} (\cM \otimes_A^L L_\chi)_0 \xto{\psi_{\chi,0}} \cN_\chi \otimes_S \cM_0 = \cN_\chi \xto{{\xi_\chi^{-1}}} \cM_\chi.
 \end{equation}
-Scaling the stability data $(\psi_i)_{i\in Q_0}$ multiplies $\psi_\chi$ and $\xi_\chi$ by the same scalar for all $\chi \in \Lambda_{Q_0}$ and hence the result.
+Scaling the stability data $(\psi_i)_{i\in Q_0}$ multiplies $\psi_\chi$ and $\xi_\chi$ by the same scalar for all $\chi \in \Lambda_Q$ and hence the result.
 \end{proof}
 
-\begin{lemma}\label{lm:kappa0}
+\begin{lemma}\label{lm:kappa0_1}
 Take $\kappa \in \Lambda_r$ then $\cM_0 = \cM_\kappa^\textup{can}$.
 \end{lemma}
 
 \begin{proof}
-The class of $L_\kappa$ in the Grothendieck group of $A$ is equal to that of $L_0$ since they are isomorphic.
-Therefore the determinant of the projective resolution of $L_\kappa$ must be equal to $L_0$. Otherwise it would give a non-trivial relation in the Grothendieck group of $A$ which is freely generated by the classes of $L_i$ for $i\in Q_0$.
+This is the translation of the proof of Lemma~\ref{lm:kappa0} accross the derived equivalence $D^b(\bX) \rightarrow D^b(A)$.
 \end{proof}
 
-Putting Proposition~\ref{prop:can} and Lemma~\ref{lm:kappa0} together we have isomorphisms $$g_\kappa \colon \cM_0 = \cM_\kappa^{\text{can}} \rightarrow \cM_\kappa$$
+Putting Proposition~\ref{prop:can} and Lemma~\ref{lm:kappa0_1} together we have isomorphisms 
+\begin{equation}\label{eq:gkappa}
+g_\kappa \colon \cM_0 = \cM_\kappa^{\text{can}} \rightarrow \cM_\kappa
+\end{equation}
 for every $\kappa \in \Lambda_r$.
 These give well-defined refined data on $\cM$  by Proposition~\ref{prop:doublestable}.
 We therefore have a morphism $\bM^{\Pic} \rightarrow \bM_\text{ref}$.
+
+\begin{remark}
+One may define the $g_\kappa$ in Equation~(\ref{eq:gkappa}) in an alternative fashion.
+The isomorphism $\gamma_k \colon \cO_\bX \rightarrow \cT_\kappa^\vee$ of Lemma~\ref{lm:kappa0} induces an isomorphism $L_0 \xto{\sim} L_\kappa$ and in turn an isomorphism $(\cM \otimes_A^L L_0)_0 \xto{\sim} (\cM \otimes_A^L L_\kappa)_0$.
+Noting that $\cM_0 = (\cM \otimes_A^L L_0)_0$ we may define $$g_k \colon \cM_0 = (\cM \otimes_A^L L_0)_0 \xto{\sim} (\cM \otimes_A^L L_\kappa)_0 \xto{\psi_{\kappa,0} \,\circ\, \xi_{\kappa}^{-1}} \cM_\kappa.$$
+This definition coincides with the one given in Equation~\ref{eq:gkappa}.
+We chose the definition in Equation~\ref{eq:gkappa} because it makes the proof of Theorem~\ref{thm:samemoduli} more direct.
+\end{remark}
 
 \subsection{From refined representations to Picard stable}
 
 We first identify a locally closed subset of $\bM_\text{ref}$ that will feature it what follows.
 There is a forgetful morphism $\bM_\text{ref} \rightarrow \bM$ that ignores refinement data.
-We may then, as before, consider the locally closed substack $\bM'$ of $\bM$ where all the $-\otimes_A L_l \colon \bM \dashto \bM$ are defined.
-We will use $\bM_\text{ref}'$ to denote the locally closed subset of $\bM_\text{ref}$ that maps to $\bM'$ under the forgetful map.
-Note that the image of $\bM^{\Pic} \rightarrow \bM_\text{ref}$ lies in $\bM_\text{ref}'$.
+We may then, as before, consider the locally closed substack $\bM^\circ$ of $\bM$ where all the $-\otimes_A L_l \colon \bM \dashto \bM$ are defined.
+We will use $\bM_\text{ref}^\circ$ to denote the locally closed subset of $\bM_\text{ref}$ that maps to $\bM^\circ$ under the forgetful map.
+Note that the image of $\bM^{\Pic} \rightarrow \bM_\text{ref}$ lies in $\bM_\text{ref}^\circ$.
 
-We will work with universal family on $\bM_\text{ref}'$: this is the universal line bundles $\cU_i$ for $i \in Q_0$, universal sections $u_a$ for $a \in Q_1$ and a lift $g \colon \underline{\Lambda}_{Q_0}/\Lambda_r \rightarrow \Vect(\bM)$ of the functor $\cU_? \colon \underline{\Lambda}_{Q_0} \rightarrow \Vect(\bM)$.
-From this we aim to define stability data $\psi_i \colon \cU \otimes_A^L L_i \rightarrow \cN_i \otimes_\bM \cU$ for $i\in Q_0$ and then a morphism $\bM_\text{ref}' \rightarrow \bM^{\Pic}$.
+We will work with universal family on $\bM_\text{ref}^\circ$: this is the universal line bundles $\cU_i$ for $i \in Q_0$, universal sections $u_a$ for $a \in Q_1$ and a lift $g \colon \underline{\Lambda}_Q/\Lambda_r \rightarrow \Vect(\bM)$ of the functor $\cU_? \colon \underline{\Lambda}_Q \rightarrow \Vect(\bM)$.
+From this we aim to define stability data $\psi_i \colon \cU \otimes_A^L L_i \rightarrow \cN_i \otimes_\bM \cU$ for $i\in Q_0$ and then a morphism $\bM_\text{ref}^\circ \rightarrow \bM^{\Pic}$.
 We do this componentwise defining isomorphisms of sheaves $\psi_{i,j} \colon (\cU \otimes_A^L L_i)_j \rightarrow \cU_i \otimes_\bM \cU_j$.
 
 Our triangulated equivalence to $K^b(P_i)$ gives us an expression of $(\cU \otimes_A^L L_i)_j$ as a complex whose components are direct sums of the bundles $\cU_i$.
-Moreover, since our family is in $\bM_\text{ref}'$ the cohomology of this complex is a line bundle concentrated in degree zero for every $i,j \in Q_0$.
-Therefore the functor $\cU_?^\text{can}$ is well defined and thus $(\cU \otimes_A^L L_i)_j$ is canonically isomorphic to $\cU_{\chi}$ for some $\chi \in \Lambda_{Q_0}$.
+Moreover, since our family is in $\bM_\text{ref}^\circ$ the cohomology of this complex is a line bundle concentrated in degree zero for every $i,j \in Q_0$.
+Therefore $(\cU \otimes_A^L L_i)_j$ is canonically isomorphic to $\cU_{\chi}$ for some $\chi \in \Lambda_{Q}$.
 The line bundle $\cU_i \otimes_\bM \cU_j$ is also of this form, it is $\cU_{\chi_i+\chi_j}$.
 
-We compare our bundles $(\cU \otimes_A^L L_i)$ and $\cU_i \otimes_S \cU$ under pullback by the morphism $f \colon \bX \rightarrow \bM$: we have natural isomorphisms
+We compare our bundles $(\cU \otimes_A^L L_i)$ and $\cU_i \otimes_\bM \cU$ under pullback by the morphism $f \colon \bX \rightarrow \bM$: we have natural isomorphisms
 \begin{equation} \label{eq:natisolinebdls}
 f^*(\cU \otimes_A^L L_i) \xto{\sim} f^* \cU \otimes_A^L L_i \xto{\sim} 
 \cT^{\vee} \otimes_A^L L_i \xto{\sim} \cT_i \otimes_{\bX} \cT^{\vee} \xto{\sim} 
 f^*\cU_{i}^{\vee} \otimes_{\bX} f^* \cU.
 \end{equation}
-This implies that the images of $\cU_\chi:= \cU_{\chi_i + \chi_j}^\text{can} \simeq (\cU \otimes_A^L L_i)_j$ and $\cU_i \otimes_\bM \cU_j$ under the composite $$\underline{\Lambda}_{Q_0} \xto{\cU_?} \Vect(\bM) \xto{f^*} \Vect(\bX)$$ are isomorphic.
+This implies that the images of $\cU_\chi \simeq (\cU \otimes_A^L L_i)_j$ and $\cU_i \otimes_\bM \cU_j$ under the composite $$\underline{\Lambda}_{Q} \xto{\cU_?} \Vect(\bM) \xto{f^*} \Vect(\bX)$$ are isomorphic.
 Hence, by definition of $\Lambda_r$, the element $\chi-(\chi_i+\chi_j) \in \Lambda_r$.
 The isomorphism $\psi_{i,j}$ is then defined by the composite:
 \begin{equation}\label{eq:gtophi}
-(\cU \otimes_A^L L_i)_j \xto{\sim} \cU_\chi = \cU_{\chi_i + \chi_j}^\text{can} \xto{g_{\chi-(\chi_i+\chi_j)}} \cU_{\chi_i + \chi_j} = \cU_i \otimes_\bM \cU_j.
+\psi_{i,j} \colon (\cU \otimes_A^L L_i)_j \xto{\sim} \cU_\chi \xto{g_{\chi-(\chi_i+\chi_j)}} \cU_{\chi_i + \chi_j} = \cU_i \otimes_\bM \cU_j.
 \end{equation}
 The isomorphisms $\psi_{i,j}$ for varying $j \in Q_0$ assemble to give the desired $A$-module isomorphism $\psi_i$. 
 Indeed the commutative diagrams in Definition~\ref{def:refined} ensure compatibility with the $A$-module structure. 
-This completes the construction of the morphism $\bM'_{\text{ref}} \rightarrow \bM^{\Pic}$.
+This completes the construction of the morphism $\bM^\circ_{\text{ref}} \rightarrow \bM^{\Pic}$.
 
 
 \begin{theorem}
-The morphisms are $\bM'_{\textup{ref}} \rightarrow \bM^{\Pic}$ and $\bM^{\Pic} \rightarrow \bM_\textup{ref}'$ are mutual quasi-inverses and give a isomorphism of stacks. 
+The morphisms are $\bM^\circ_{\textup{ref}} \rightarrow \bM^{\Pic}$ and $\bM^{\Pic} \rightarrow \bM_\textup{ref}^\circ$ are mutual quasi-inverses and give a isomorphism of stacks. 
 \end{theorem}
 
 \begin{proof}
-Observe that $(\cU \otimes_A^L L_{i+j})_0 = (\cU \otimes_A^L L_i)_j$.
-Start with refinement data $g_\kappa$ for $\kappa in \Lambda_r$.
-Then substituting Equation~\ref{eq:gtophi} in Equation~\ref{eq:phitog} gives that $\bM'_{\textup{ref}} \rightarrow \bM^{\Pic} \rightarrow \bM_\textup{ref}'$ is the identity.
-Similarly starting with tensor stability data $\phi_\chi$ for $\chi \in \Wt(Q)$, substituting Equation~\ref{eq:phitog} in Equation~\ref{eq:gtophi} gives that $\bM'_{\textup{ref}} \rightarrow \bM^{\Pic} \rightarrow \bM_\textup{ref}'$ is the identity.
+Observe that $(\cU \otimes_A^L L_{i+j})_0 = (\cU \otimes_A^L L_i)_j$ and that $\cU_\chi$ in Equation~\ref{eq:gtophi} is $\cU^{\text{can}}_{\chi_+\chi_j}$.
+Start with refinement data $g_\kappa$ for $\kappa \in \Lambda_r$.
+Then substituting Equation~\ref{eq:gtophi} in Equation~\ref{eq:phitog} gives that $\bM^\circ_{\textup{ref}} \rightarrow \bM^{\Pic} \rightarrow \bM_\textup{ref}^\circ$ is the identity.
+Similarly starting with tensor stability data $\psi_\chi$ for $\chi \in \Lambda_Q$, substituting Equation~\ref{eq:phitog} in Equation~\ref{eq:gtophi} gives that $\bM^\circ_{\textup{ref}} \rightarrow \bM^{\Pic} \rightarrow \bM_\textup{ref}^\circ$ is the identity.
 \end{proof}
 
-\begin{corollary}\label{cor:mref}
-The stack $\bM_{ref}'$ is isomorphic to $\bX$.
+\begin{corollary}\label{cor:mref}   
+The stack $\bM_\textup{ref}^\circ$ is isomorphic to $\bX$.
 \end{corollary}
 
 \section{Global quotient presentation of $\bM_\textup{ref}$}\label{sc:GIT}
 
 The moduli space of refined representations, as in the `not-refined' version, has a natural global quotient presentation.
-Given a refined quiver representation $(\cM_i, m_a, g_\kappa)$ over $k$, let $\text{Func}_{\otimes, \cM_i}(\underline{\Lambda}_{Q_0}/\Lambda_r, \Vect(k))$ denote the set of categorifications of $\Lambda_r$ relations of the functor $\underline{\Lambda}_{Q_0} \rightarrow \Vect(k)$ taking $i \in Q_0$ to $\cM_i$.
+Given a refined quiver representation $(\cM_i, m_a, g_\kappa)$ over $k$, let $\text{Func}_{\otimes, \cM_i}(\underline{\Lambda}_{Q}/\Lambda_r, \Vect(k))$ denote the set of monoidal lifts $\underline{\Lambda}_{Q}/\Lambda_r\rightarrow \Vect(k)$ of the functor $\cM_? \colon \underline{\Lambda}_{Q} \rightarrow \Vect(k)$.
 Picking a basis for $\cM_i$ to identify them with $k$ enables us to view the $m_a$ as elements of $\bA^1$ and $g$ as elements of $\Lambda_r^{\vee}$
 We thus obtain an element of
 \begin{equation*}
-\cR(Q, \vec{d}) := \oplus_{a \in Q_1} \Hom(\cM_{t(a)}, \cM_{h(a)}) \times \text{Func}_{\otimes, \cM_i}(\underline{\Lambda}_{Q_0}/\Lambda_r, \Vect(k))\simeq \bA^{Q_1} \times \Lambda_r^{\vee}. \end{equation*}
+\cR(Q, \vec{d}) := \oplus_{a \in Q_1} \Hom(\cM_{t(a)}, \cM_{h(a)}) \times \text{Func}_{\otimes, \cM_i}(\underline{\Lambda}_{Q}/\Lambda_r, \Vect(k))\simeq \bA^{Q_1} \times \Lambda_r^{\vee}. \end{equation*}
 We use $\cR_A$ to denote the {\em refined representation space} which is the closed subscheme of $\cR(Q, \vec{d})$ whose elements descend to representations of $A \simeq kQ/I$ and furthermore make the diagrams in (\ref{eq:refined}) commute.
 The gauge group
 \begin{equation*}
 \GL(\vec{d}) := \oplus_{i \in Q_0} \GL(\cM_i) \simeq \bG_m^{Q_0}.
 \end{equation*}
 naturally acts on $\cR_A$ by change of basis.
-Furthermore the group $\Lambda_{Q_0}$ can be naturally identified with its group of characters.
 Note that the diagonal one-parameter subgroup 
-$$\Delta = \{(\lambda, \ldots,\lambda) | \lambda \in \bG_m\} \leq \GL(\vec{d})$$ 
-acts trivially so there is an induced action of $\PGL(\vec{d}) := \GL(\vec{d}) / \Delta$.
-Taking the quotient by $\PGL(\vec{d})$ as opposed to $\GL(\vec{d})$ amounts to considering the rigidified moduli space as opposed to the unrigidified version. 
+$$\Delta = \{(\lambda, \ldots,\lambda) | \lambda \in \bG_m\} \leq \GL(\vec{1})$$ 
+acts trivially so there is an induced action of $\PGL(\vec{1}) := \GL(\vec{d}) / \Delta$.
+Taking the quotient by $\PGL(\vec{d})$ as opposed to $\GL(\vec{1})$ amounts to considering the rigidified moduli space as opposed to the unrigidified version. 
 An argument similar to the proof of \cite[Proposition 3.9]{Abd} shows that $\bM_{\text{ref}}$ is isomorphic to the quotient stack $[\cR_A/ \PGL(\vec{d})]$.
 
-\subsection{$\bM_{\text{ref}}'$ and GIT stability}
+\subsection{$\bM_{\text{ref}}^\circ$ and GIT stability}
 
-We'll attempt to study the locus $\bM_{\text{ref}}'$, i.e.\ the one isomorphic to $\bX$, using GIT.
+We'll attempt to study the locus $\bM_{\text{ref}}^\circ$, i.e.\ the one isomorphic to $\bX$, using GIT.
 First we make the following observation.
 
 \begin{lemma}\label{lm:open}
-The subset $\bM_{\textup{ref}}' \subset \bM_{\textup{ref}}$ is open.
+The subset $\bM_{\textup{ref}}^\circ \subset \bM_{\textup{ref}}$ is open.
 \end{lemma}
 
 \begin{proof}
 Fix a pair of vertices $i,j$ and consider the object $(\cU \otimes^L_A L_j)_i \in D^b(\bM_\text{ref})$ where $\cU$ is the universal family on  $\bM_{\text{ref}}$. This is a complex is of rank one.
 First note that when restricted to the image of $\bX$, this complex is concentrated in degree zero and is quasi-isomorphic to the line bundle $\cT_i^{\vee} \otimes_{\bX} \cL_j$. This implies that the cohomology sheaves at nonzero degrees are torsion and furthermore, that the cohomology sheaf in degree zero is of rank one.
-The nonzero cohomology sheaves and the torsion part of the zero cohomology sheaf are supported on a closed set that does not contain the image of $X$. The complement of this subset is $\bM_{\text{ref}}'$ and hence the result.
+The nonzero cohomology sheaves and the torsion part of the zero cohomology sheaf are supported on a closed set that does not contain the image of $X$. The complement of this subset is $\bM_{\text{ref}}^\circ$ and hence the result.
 \end{proof}
 
-Lemma~\ref{lm:open} hints that perhaps $\bM'_{\textup{ref}}$ is carved out by some GIT stability parameter. 
+Lemma~\ref{lm:open} hints that perhaps $\bM^\circ_{\textup{ref}}$ is carved out by some GIT stability parameter. 
 
 As discussed above, $\bM_{\text{ref}}$ is isomorphic to the quotient stack $[\cR_A/ \PGL(\vec{d})]$.
 Following King \cite{Ki}, one may define an intrisic notion of $\theta$-stability for refined representations equivalent to the GIT stability of the $\PGL(\vec{d})$ action on $\cR_A$,  see \cite[Definition 3.4]{Abd}. 
-Observe that $\PGL(\vec{d})$ maybe identified with the subgroup $(1 \times \oplus_{i\neq 0} \GL(\cM_i)) \subset \GL(\vec{d})$.
-This in turn identifies $\textup{Wt}(Q)$ with the characters of $\PGL(\vec{d})$ so we may consider the $\theta$-semistable points in $\cR_A$ for $\theta \in \textup{Wt}(Q)$.
+Observe that $\PGL(\vec{d})$ maybe identified with the subgroup $\oplus_{i\neq 0} \GL(\cM_i) \subset \GL(\vec{d})$.
+This in turn identifies $\Lambda_Q$ with the characters of $\PGL(\vec{d})$ so we may consider the $\theta$-semistable points in $\cR_A$ for $\theta \in \Lambda_Q$.
 We will use $\bM_{\textup{ref}}^\theta$ to denote the semistable locus of $\bM_{\textup{ref}}$.
 
 
 \begin{definition}
-Given a generic stability parameter $\theta \in \textup{Wt}(Q)$ we say {\em $\theta$ stabilises $\bX$} if $f(x)$ is $\theta$-stable for all $x \in \bX$.
+Given a generic stability parameter $\theta \in \Lambda_Q$ we say {\em $\theta$ stabilises $\bX$} if $f(x)$ is $\theta$-stable for all $x \in \bX$.
 In other words, {\em $\theta$ stabilises $\bX$} if $f \colon \bX \rightarrow \bM_{\textup{ref}}$ factors through $\bM_{\textup{ref}}^\theta$.
 \end{definition}
 
 \begin{theorem}\label{thm:stab}
-Let $\theta \in \textup{Wt}(Q)$ be a stability parameter that stabilises $\bX$ then the stacks $\bM_{\textup{ref}}' \simeq \bX$ are isomorphic to a connected component of $\bM_{\textup{ref}}^\theta$.
+Let $\theta \in \Lambda_Q$ be a stability parameter that stabilises $\bX$ then the stacks $\bM_{\textup{ref}}^\circ \simeq \bX$ are isomorphic to a connected component of $\bM_{\textup{ref}}^\theta$.
 \end{theorem}
 
 \begin{proof}
@@ -703,20 +724,20 @@ The result follows.
 
 \begin{remark}
 The existence of a $\theta$ that stabilises $\bX$ is part of the hypothesis of Theorem~\ref{thm:stab}.
-We expect such $\theta \in \textup{Wt}(Q)$ to exist in general.
+We expect such $\theta \in \Lambda_Q$ to exist in general.
 In fact, in Lemma~\ref{lm:generic} below, we earmark a candidate.
 \end{remark}
 
 \begin{lemma}\label{lm:generic}
-There exists a stability condition $\theta \in \textup{Wt}(Q)$ so that $\theta$ is generic, i.e.\ $\theta$-semistable implies $\theta$-stable, and $\textup{pic}(\theta)$ is the pullback of a very ample line bundle on the coarse moduli space $X$ of $\bX$.
+There exists a stability condition $\theta \in \Lambda_Q$ so that $\theta$ is generic, i.e.\ $\theta$-semistable implies $\theta$-stable, and $f^*(\theta)$ is the pullback of a very ample line bundle on the coarse moduli space $X$ of $\bX$.
 \end{lemma}
 
 \begin{proof}
-Definition 3.4 of \cite{Abd} only tests $\theta \in \Lambda_{Q_0}$ against filtrations $\cM_\bullet$ of $(\cM_i, m_a)$ that satisfy $\kappa(W_\bullet)=0$ for all $\kappa\in \Lambda_r \subset \Lambda_{Q_0}$.
-In other words, stability is only dependent on the class of $\theta$ in $\Lambda_{Q_0}/\Lambda_r$.
-Now $\cT$ generates $D^b(\bX)$ so the homomorphism $\text{pic}\colon \Lambda_{Q_0} \rightarrow \Pic(\bX)$ is surjective and we have an isomorphism $\Lambda_{Q_0}/\Lambda_r \simeq \Pic(\bX)$.
+Definition 3.4 of \cite{Abd} only tests $\theta \in \Lambda_{Q}$ against filtrations $\cM_\bullet$ of $(\cM_i, m_a)$ that satisfy $\kappa(\cM_\bullet)=0$ for all $\kappa\in \Lambda_r \subset \Lambda_{Q}$.
+In other words, stability is only dependent on the class of $\theta$ in $\Lambda_{Q}/\Lambda_r$.
+Now $\cT$ generates $D^b(\bX)$ so the homomorphism $f^*\colon \Lambda_{Q} \rightarrow \Pic(\bX)$ is surjective and we have an isomorphism $\Lambda_{Q}/\Lambda_r \simeq \Pic(\bX)$.
 Furthermore, ampleness is a generic condition in $\Pic(X)_\bQ \simeq \Pic(\bX)_\bQ$.
-Therefore, if necessary, one may perturb $\theta$ so that it is generic and $\text{pic}(\theta)$ is pulled back from the ample cone of $X$.
+Therefore, if necessary, one may perturb $\theta$ so that it is generic and $f^*(\theta)$ is pulled back from the ample cone of $X$.
 \end{proof}
 
 \begin{remark}\label{rm:generic}
@@ -726,9 +747,9 @@ The statement corresponding to Lemma~\ref{lm:generic} is not true when applied t
 \subsection{An especially nice situation}\label{ssec:nice}
 In this subsection we investigate a case when the isomorphism $\bX \simeq \bM_\text{ref}^\theta$ is more direct than has been discussed so far.
 From here on we will assume that $\bX$ is a Mori-dream stack, i.e.\ that $\bX$ has a finitely generated Cox ring $R$ and that $$\bX \simeq \bigg[\frac{\Spec(R) \setminus V(B_\theta)}{\Pic(\bX)^\vee}\bigg]$$ for $B_\theta$ the irrelevant ideal given by some ample line bundle $\theta \in \Pic(\bX)$.
-We take $S$ to be the Cox ring of the moduli space $\bM$. The ring $S$ is naturally graded by $\text{Wt}(Q)$; the graded component $S_{j-i}$ has a natural $k$-basis given by $\bfe_i A \bfe_j$.
+We take $S$ to be the Cox ring of the moduli space $\bM$. The ring $S$ is naturally graded by $\Lambda_Q$; the graded component $S_{j-i}$ has a natural $k$-basis given by $\bfe_i A \bfe_j$.
 Note that $\bM \simeq [\Spec(S)/\PGL(\vec{1})]$. 
-The morphism $f \colon \bX \rightarrow \bM$ is induced from tautological homomorphism of Cox rings $g \colon S \rightarrow R$ with the group homomorphism $f^* \colon \Wt(Q) \rightarrow \Pic(\bX)$ intertwining the grading.
+The morphism $f \colon \bX \rightarrow \bM$ is induced from tautological homomorphism of Cox rings $g \colon S \rightarrow R$ with the group homomorphism $f^* \colon \Lambda_Q \rightarrow \Pic(\bX)$ intertwining the grading.
 
 As discussed just above Definition ~\ref{def:refined}, for any two pairs of elements $(i,j)$ and $(k,l)$ of $Q_0$ for which $(\chi_i + \chi_l)-(\chi_j + \chi_k) \in \text{ker}(f^*)$ we have an isomorphism of Peirce components $\gamma(i,j;k,l) \colon \bfe_i A \bfe_j \xrightarrow{\sim} \bfe_k A \bfe_l$. 
 This induces an isomorphism $\gamma(i,j;k,l) \colon S_{j-i} \xrightarrow{\sim} S_{l-k}$.
@@ -738,10 +759,10 @@ This separation of components gives rise to some obvious elements of $\ker g$ th
     y - \gamma(i,j;k,l) (y)
 \end{equation}
 where $y \in S_{j-i}$ and $i,j,k,l \in Q_0$ are such that $(\chi_i + \chi_l)-(\chi_j + \chi_k) \in \text{ker}(f^*)$. 
-We let $I_{\textup{de}}\subseteq \ker g$ be the $\Wt(Q)$-graded ideal generated by these elements.
+We let $I_{\textup{de}}\subseteq \ker g$ be the $\Pic(\bX)$-graded ideal generated by these elements.
 
-\begin{definition}
-We say our collection {\em captures the Cox ring of $\bX$} if $g$ is surjective descends to an isomorphism $S/I_{de} \simeq R$.
+\begin{definition} \label{def:captureCox}
+We say our tilting bundle $\cT$ {\em captures the Cox ring of $\bX$} if $g$ is surjective and descends to an isomorphism $S/I_{de} \simeq R$.
 \end{definition}
 
 In the following we demonstrate how the isomorphism $\bX \simeq \bM_{\text{ref}}^\theta$ can be obtained from the ring homomorphism $g$ when $\cT$ captures the Cox ring of $\bX$.
@@ -749,10 +770,10 @@ To further clarify, this is precisely when the difference between $S$ and $R$ is
 
 The short exact sequence of abelian groups
 \begin{equation} \label{eq:defineF}
-     0 \to \Lambda_r \to \Wt(Q) \to \Pic(\bX) \to 0
+     0 \to \Lambda_r \to \Lambda_Q \to \Pic(\bX) \to 0
 \end{equation}
 will, as always, play a crucial role.
-The group $\PGL(\vec{1})$, which is $\Wt(Q)^\vee$, acts diagonally on $\Spec S \times \Lambda_r^\vee$ so $$[\Spec R/\Pic(\bX)^\vee] \simeq [V/\PGL(\vec{1})]$$ where $V$ is the $\PGL(\vec{1})$-orbit of $\Spec R \times 1 \subseteq \Spec S \times \Lambda_r^\vee$.
+The group $\PGL(\vec{1})$, which is $\Lambda_Q^\vee$, acts diagonally on $\Spec S \times \Lambda_r^\vee$ so $$[\Spec R/\Pic(\bX)^\vee] \simeq [V/\PGL(\vec{1})]$$ where $V$ is the $\PGL(\vec{1})$-orbit of $\Spec R \times 1 \subseteq \Spec S \times \Lambda_r^\vee$.
 The refined representation space $\cR_A$ is a closed subscheme of $\Spec S \times \Lambda_r^\vee$ cut-out by the commutative diagrams (\ref{eq:refined}).
 We'll eventually show that in this setting $\cR_A = V$.
 
@@ -762,15 +783,15 @@ Then $V$ is the closed subscheme defined by the ideal sheaf
 $$ I_V := \bigcap_{\tau \in \PGL(\vec{1})} \tau\cdot\left(I \otimes k\Lambda_r + S \otimes \frakm \right)$$
 To compute this, we need some notation. 
 Recall that $I$ is only $\Pic(\bX)$-homogeneous. Let $s \in I$ be a $\Pic(\bX)$-homogeneous element. 
-Then we can express it as a sum of $\Wt(Q)$-homogeneous elements $s = s_1 + \ldots + s_m$ all of whose degrees lie in the same coset of $\Lambda_r$. 
-Hence we can pick $\kappa_i \in \Lambda_r$ such that $s^h := s_1 \otimes \kappa_1 + \ldots + s_m \otimes \kappa_m$ is $\Wt(Q)$-homogeneous. 
+Then we can express it as a sum of $\Lambda_Q$-homogeneous elements $s = s_1 + \ldots + s_m$ all of whose degrees lie in the same coset of $\Lambda_r$. 
+Hence we can pick $\kappa_i \in \Lambda_r$ such that $s^h := s_1 \otimes \kappa_1 + \ldots + s_m \otimes \kappa_m$ is $\Lambda_Q$-homogeneous. 
 The {\em homogenisation} $s^h$ is only defined up to multiplication by some $\kappa \in \Lambda_r$. 
 
 \begin{lemma}
-Let $\Sigma \subset I$ be a set of $\Wt(Q)$-homogeneous generators of $I$ then $I_V = \langle s^h \,|\, s \in \Sigma \rangle.$ 
+Let $\Sigma \subset I$ be a set of $\Pic(\bX)$-homogeneous generators of $I$ then $I_V = \langle s^h \,|\, s \in \Sigma \rangle.$ 
 \end{lemma}
 
-Under the assumption that $\cT$ captures the Cox ring of $\bX$ we have that $I$ is generated by elements of the form $s:= y - \gamma (y)$ for some $\Wt(Q)$-homogeneous element $y \in S$.
+Under the assumption that $\cT$ captures the Cox ring of $\bX$ we have that $I$ is generated by elements of the form $s:= y - \gamma (y)$ for some $\Lambda_Q$-homogeneous element $y \in S$.
 Its homogenisation $s^h$ can be encoded moduli-theoretically on the refined representation as follows.
 Take $(\cM_i, m_a, g)$ a $k$-point of $\bM_\text{ref}$.
 Suppose that $i,j,k,l \in Q_0$ are such that $\kappa:= (\chi_i + \chi_l)-(\chi_j + \chi_k) \in \Lambda_r$. 
@@ -778,21 +799,25 @@ The refinement data $g$ thus gives an isomorphism $g_{\kappa} \colon \Hom_k(\cM_
 Suppose $a \in \bfe_i A \bfe_j$ so we have a  multiplication by $a$ map $m_a \colon \cM_i \to \cM_j$ and multiplication by $\gamma(a)$ map $m_{\gamma(a)} \colon  \cM_{k} \to \cM_{l}$. Then the relation $s^h$ corresponds to commutativity of the following diagram. 
 \begin{equation}
 \begin{CD}
-k @>m_a \otimes \cM_{i}^*>> \cM_{j} \otimes \cM_{i}^*\\
+k @>m_a \otimes \cM_{i}^\vee>> \cM_{j} \otimes \cM_{i}^\vee\\
 @VV\text{id}V @VV{g_\kappa}V\\
-k @>m_{\gamma(a)}\otimes \cM_{k}^*>> \cM_{l} \otimes \cM_{k}^*
+k @>m_{\gamma(a)}\otimes \cM_{k}^\vee>> \cM_{l} \otimes \cM_{k}^\vee
 \end{CD}
 \end{equation}
-This is precisely the tensor product of the diagram (\ref{eq:refined}) by $(\cM_i \otimes \cM_k)^*$.
+This is precisely the tensor product of the diagram (\ref{eq:refined}) by $(\cM_i \otimes \cM_k)^\vee$.
 Hence $\cR_A = V$.
 
 \begin{corollary}
-The ring homomorphisms $g$ along with the intertwining homomorphism $f^*$ give an isomorphism of stacks $$\bigg[\frac{\Spec R}{\Pic(\bX)^\vee}\bigg] \simeq \bigg[\frac{\cR_A}{\PGL(\vec{1})}\bigg].$$
+If tilting bundle captures the Cox ring of $\bX$ then the ring homomorphisms $g$ along with the intertwining homomorphism $f^*$ give an isomorphism of stacks $$\bigg[\frac{\Spec R}{\Pic(\bX)^\vee}\bigg] \simeq \bigg[\frac{\cR_A}{\PGL(\vec{1})}\bigg].$$
 \end{corollary}
 
-\begin{corollary}
-There is a GIT parameter $\theta \in \Wt(Q)$ for which $\bX \simeq \bM_\textup{ref}^\theta$.
+\begin{corollary}  \label{cor:stackfromCox}
+There is a GIT parameter $\theta \in \Lambda_Q$ for which $\bX \simeq \bM_\textup{ref}^\theta$.
 \end{corollary}
+
+\begin{example}
+Not all tilting bundles $\cT$ on $\bX$ capture the corresponding Cox ring: take $\bX= \bF_2:= \bP(\cO_{\bP^1} \oplus \cO_{\bP^1}(2))$ with the tilting bundle $\cT= \cO \oplus \cO(f) \oplus \cO(h) \oplus \cO(f+h)$ where $f$ and $h-2f$ are the divisors corresponding to the fibre and the base.
+\end{example}
 
 
 \section{An example: G-L projective spaces}\label{sec:HIMO}
